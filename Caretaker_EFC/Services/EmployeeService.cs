@@ -2,8 +2,6 @@
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -16,7 +14,7 @@ namespace Caretaker_EFC.Services
 
         public static ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
 
-        public static async System.Threading.Tasks.Task SaveEmployeeAsync(Employee employee)
+        public static async Task SaveEmployeeAsync(Employee employee)
         {
             var employeeEntity = new EmployeeEntity
             {
@@ -63,7 +61,7 @@ namespace Caretaker_EFC.Services
                 return null!;
         }
 
-        public static async System.Threading.Tasks.Task UpdateEmployeeAsync(Employee employee)
+        public static async Task UpdateEmployeeAsync(Employee employee)
         {
             var _employeeEntity = await _context.Employees.FirstOrDefaultAsync(x => x.Id == employee.Id);
             if(_employeeEntity != null)
@@ -85,7 +83,7 @@ namespace Caretaker_EFC.Services
             }
         }
 
-        public static async System.Threading.Tasks.Task RemoveEmployeeAsync(string email)
+        public static async Task RemoveEmployeeAsync(string email)
         {
             var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Email == email);
             if(employee != null)

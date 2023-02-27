@@ -1,13 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Caretaker_EFC.MVVM.Models;
+using Caretaker_EFC.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
-    internal class ListEmployeesViewModel : ObservableObject
+    public partial class ListEmployeesViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private string pageTitle = "All Employees";
+
+        [ObservableProperty]
+        private ObservableCollection<Employee> employees = EmployeeService.Employees();
     }
 }

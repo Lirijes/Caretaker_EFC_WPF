@@ -1,12 +1,8 @@
 ﻿using Caretaker_EFC.MVVM.Models;
-using Caretaker_EFC.MVVM.Models.Entities;
 using Caretaker_EFC.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Caretaker_EFC.MVVM.ViewModels
@@ -35,11 +31,16 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [RelayCommand]
         public static async Task SaveAsync()
         {
-            var employee = new Employee();
+            //var employee = new Employee();
             
-            //await EmployeeService.SaveEmployeeAsync(new Employee { FirstName = Firstname });
-            //Firstname = string.Empty;
-
+            await EmployeeService.SaveEmployeeAsync(new Employee { FirstName = Firstname, LastName = Lastname, Email = Email, PhoneNumber = Phonenumber });
+            Firstname = string.Empty;
+            LastName = string.Empty;
+            Email = string.Empty;
+            Phonenumber = string.Empty;
         }
+
+        [ObservableProperty]
+        private ObservableCollection<Employee> employees = EmployeeService.Employees();
     }
 }
