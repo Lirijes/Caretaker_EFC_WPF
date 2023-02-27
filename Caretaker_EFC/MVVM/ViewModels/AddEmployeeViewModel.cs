@@ -29,13 +29,18 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private string phonenumber = string.Empty;
 
         [RelayCommand]
-        public static async Task SaveAsync()
+        public async Task SaveAsync()
         {
-            //var employee = new Employee();
-            
-            await EmployeeService.SaveEmployeeAsync(new Employee { FirstName = Firstname, LastName = Lastname, Email = Email, PhoneNumber = Phonenumber });
+            await EmployeeService.SaveEmployeeAsync(new Employee 
+            { 
+                FirstName = Firstname, 
+                LastName = Lastname, 
+                Email = Email, 
+                PhoneNumber = Phonenumber
+            });
+
             Firstname = string.Empty;
-            LastName = string.Empty;
+            Lastname = string.Empty;
             Email = string.Empty;
             Phonenumber = string.Empty;
         }

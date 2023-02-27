@@ -1,6 +1,4 @@
-﻿using Caretaker_EFC.MVVM.ViewModels.Addresses;
-using Caretaker_EFC.MVVM.ViewModels.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Caretaker_EFC.MVVM.ViewModels
