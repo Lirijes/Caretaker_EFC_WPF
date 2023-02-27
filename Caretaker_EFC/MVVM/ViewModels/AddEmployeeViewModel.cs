@@ -3,11 +3,13 @@ using Caretaker_EFC.MVVM.Models.Entities;
 using Caretaker_EFC.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Task = System.Threading.Tasks.Task;
 
-namespace Caretaker_EFC.MVVM.ViewModels.Employee
+namespace Caretaker_EFC.MVVM.ViewModels
 {
     public partial class AddEmployeeViewModel : ObservableObject
     {
@@ -31,12 +33,12 @@ namespace Caretaker_EFC.MVVM.ViewModels.Employee
         private string phonenumber = string.Empty;
 
         [RelayCommand]
-        public static async Task SaveEmployeeAsync()
+        public static async Task SaveAsync()
         {
-            //var employee = new EmployeeEntity();
-            //how to call on saveemployeeasync??
-            await EmployeeService.SaveEmployeeAsync(new EmployeeEntity { FirstName = firstname });
-            firstname = string.Empty;
+            var employee = new Employee();
+            
+            //await EmployeeService.SaveEmployeeAsync(new Employee { FirstName = Firstname });
+            //Firstname = string.Empty;
 
         }
     }

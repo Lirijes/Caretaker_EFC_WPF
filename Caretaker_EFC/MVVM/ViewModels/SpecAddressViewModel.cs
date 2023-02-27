@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Caretaker_EFC.MVVM.ViewModels.Addresses
+namespace Caretaker_EFC.MVVM.ViewModels
 {
     internal class SpecAddressViewModel : ObservableObject
-    { //här ska alla tasks visas som finns på adressen
+    {
     }
 }

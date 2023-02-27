@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Caretaker_EFC.MVVM.ViewModels.Tasks
+namespace Caretaker_EFC.MVVM.ViewModels
 {
-    internal class SpecTaskViewModel : ObservableObject
-    { // här visas mer info om en speciell task
+    internal class SpecErrandViewModel : ObservableObject
+    {
     }
 }

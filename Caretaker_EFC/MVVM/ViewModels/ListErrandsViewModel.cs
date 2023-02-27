@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Caretaker_EFC.MVVM.ViewModels.Tasks
+namespace Caretaker_EFC.MVVM.ViewModels
 {
-    internal class TaskListViewModel : ObservableObject
+    internal class ListErrandsViewModel : ObservableObject
     {
     }
 }

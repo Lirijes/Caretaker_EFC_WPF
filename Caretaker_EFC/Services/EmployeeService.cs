@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
@@ -12,6 +13,8 @@ namespace Caretaker_EFC.Services
     internal class EmployeeService
     {
         private static DataContext _context = new DataContext();
+
+        public static ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
 
         public static async System.Threading.Tasks.Task SaveEmployeeAsync(Employee employee)
         {
@@ -90,6 +93,11 @@ namespace Caretaker_EFC.Services
                 _context.Remove(employee);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public static ObservableCollection<Employee> Employees()
+        {
+            return employees;
         }
     }
 }

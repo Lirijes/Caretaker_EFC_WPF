@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Caretaker_EFC.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for TaskView.xaml
+    /// Interaction logic for ErrandView.xaml
     /// </summary>
-    public partial class TaskView : UserControl
+    public partial class ErrandView : UserControl
     {
-        public TaskView()
+        public ErrandView()
         {
             InitializeComponent();
         }

@@ -1,5 +1,4 @@
 ﻿using Caretaker_EFC.MVVM.ViewModels.Addresses;
-using Caretaker_EFC.MVVM.ViewModels.Employee;
 using Caretaker_EFC.MVVM.ViewModels.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,12 +11,12 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private ObservableObject currentViewModel;
 
         [ObservableProperty]
-        private ObservableObject taskListViewModel;
+        private ObservableObject listErrandsViewModel;
 
         public MainViewModel()
         {
-            CurrentViewModel = new TaskListViewModel();
-            taskListViewModel = new TaskListViewModel();
+            CurrentViewModel = new ListErrandsViewModel();
+            ListErrandsViewModel = new ListErrandsViewModel();
         }
 
         #region employee
@@ -31,7 +30,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [RelayCommand]
         public void GoToEmployeeList()
         {
-            CurrentViewModel = new EmployeeListViewModel();
+            CurrentViewModel = new ListEmployeesViewModel();
         }
 
         [RelayCommand]
@@ -53,7 +52,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [RelayCommand]
         public void GoToAddressList()
         {
-            CurrentViewModel = new AddressesListViewModel();
+            CurrentViewModel = new ListAddressesViewModel();
         }
 
         [RelayCommand]
@@ -64,24 +63,24 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         #endregion
 
-        #region task
+        #region errand
 
         [RelayCommand]
         public void GoToAddTask()
         {
-            CurrentViewModel = new AddTaskViewModel();
+            CurrentViewModel = new AddErrandViewModel();
         }
 
         [RelayCommand]
         public void GoToTaskList()
         {
-            CurrentViewModel = new TaskListViewModel();
+            CurrentViewModel = new ListErrandsViewModel();
         }
 
         [RelayCommand]
         public void GoToSpecTask()
         {
-            CurrentViewModel = new SpecTaskViewModel();
+            CurrentViewModel = new SpecErrandViewModel();
         }
 
         #endregion

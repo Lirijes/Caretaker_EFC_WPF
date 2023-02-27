@@ -26,7 +26,7 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         public string City { get; set; } = string.Empty;
 
         [Required]
-        public int TaskId { get; set; }
-        public TaskEntity Task { get; set; } = null!; // get Id from TaskModel
+        public int ErrandId { get; set; }
+        public ErrandEntity Errand { get; set; } = null!; // get Id from TaskModel
     }
 }

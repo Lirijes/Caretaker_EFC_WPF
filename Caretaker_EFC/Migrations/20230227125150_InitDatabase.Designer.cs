@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230227093107_InitDatabase")]
+    [Migration("20230227125150_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -37,6 +37,9 @@ namespace Caretaker_EFC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("ErrandId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasColumnType("char(6)");
@@ -45,16 +48,7 @@ namespace Caretaker_EFC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50");
 
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TaskOrderNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TaskOrderNumber");
 
                     b.ToTable("Addresses");
                 });
@@ -92,33 +86,63 @@ namespace Caretaker_EFC.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.TaskEntity", b =>
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", b =>
                 {
                     b.Property<string>("OrderNumber")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("CustomerPhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.HasKey("OrderNumber");
 
-                    b.ToTable("Tasks");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
+                    b.ToTable("Errands");
+                });
+
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", b =>
+                {
+                    b.HasOne("Caretaker_EFC.MVVM.Models.Entities.AddressEntity", "Address")
+                        .WithOne("Errand")
+                        .HasForeignKey("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.AddressEntity", b =>
                 {
-                    b.HasOne("Caretaker_EFC.MVVM.Models.Entities.TaskEntity", "Task")
-                        .WithMany()
-                        .HasForeignKey("TaskOrderNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.Navigation("Errand")
                         .IsRequired();
-
-                    b.Navigation("Task");
                 });
 #pragma warning restore 612, 618
         }
