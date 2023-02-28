@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Caretaker_EFC.MVVM.Models.Entities
 {
@@ -23,5 +24,8 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [Required]
         public int ErrandId { get; set; }
         public ErrandEntity Errand { get; set; } = null!; // get Id from TaskModel
+
+        // since employee can have more than 1 addresses its an -> one to many relation
+        public ICollection<ErrandEntity> Errands = new HashSet<ErrandEntity>();
     }
 }

@@ -10,7 +10,7 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [Key]
         public string OrderNumber { get; set; } = null!;
 
-        [Column(TypeName = "datetime2")]
+        [Column(TypeName = "datetime")]
         public DateTime OrderDate { get; set; }
 
         [StringLength(100)]

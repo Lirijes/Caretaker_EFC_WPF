@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230227125150_InitDatabase")]
+    [Migration("20230228141552_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -113,7 +113,7 @@ namespace Caretaker_EFC.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Status")
                         .IsRequired()

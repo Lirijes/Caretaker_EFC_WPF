@@ -27,5 +27,6 @@ namespace Caretaker_EFC.MVVM.Models.Entities
 
         // since employee can have more than 1 addresses its an -> one to many relation
         public ICollection<AddressEntity> Addresses = new HashSet<AddressEntity>();
+        public ICollection<ErrandEntity> Errands = new HashSet<ErrandEntity>();
     }
 }

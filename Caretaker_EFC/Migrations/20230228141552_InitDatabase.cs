@@ -47,7 +47,7 @@ namespace Caretaker_EFC.Migrations
                 columns: table => new
                 {
                     OrderNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     CustomerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CustomerEmail = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     CustomerPhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
