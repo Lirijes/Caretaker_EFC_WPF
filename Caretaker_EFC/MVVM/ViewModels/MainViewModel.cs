@@ -14,7 +14,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public MainViewModel()
         {
             CurrentViewModel = new ListErrandsViewModel();
-            ListErrandsViewModel = new ListErrandsViewModel();
+            listErrandsViewModel = new ListErrandsViewModel();
         }
 
         #region employee

@@ -24,7 +24,8 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public async Task EditEmployee()//det som läggs in här kan användas på min vies som en commansparameter
         {
             MessageBox.Show($"Contact {SelectedEmployee.FirstName} {SelectedEmployee.LastName} is updated");
-            await EmployeeService.UpdateEmployeeAsync(SelectedEmployee.Id, selectedEmployee);
+            await EmployeeService.UpdateEmployeeAsync(SelectedEmployee.Id, SelectedEmployee);
+            //ändrat ovan selectedEmployee till stor bokstav då det var varning, kanske krånglar
         }
         public async Task Update(Guid id, Employee employee)
         {

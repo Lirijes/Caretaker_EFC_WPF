@@ -2,6 +2,7 @@
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace Caretaker_EFC.Services
                 return null!;
         }
 
-        public static async Task UpdateEmployeeAsync(System.Guid id, Employee employee)
+        public static async Task UpdateEmployeeAsync(Guid id, Employee employee)
         {
             var _employeeEntity = await _context.Employees.FirstOrDefaultAsync(x => x.Id == employee.Id);
             if(_employeeEntity != null)

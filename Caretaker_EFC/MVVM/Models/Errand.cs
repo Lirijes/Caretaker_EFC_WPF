@@ -1,11 +1,5 @@
 ﻿using Caretaker_EFC.MVVM.Models.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caretaker_EFC.MVVM.Models
 {

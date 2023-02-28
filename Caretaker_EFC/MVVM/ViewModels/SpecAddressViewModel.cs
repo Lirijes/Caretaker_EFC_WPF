@@ -22,7 +22,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [RelayCommand]
         public async Task EditAddress()
         {
-            MessageBox.Show($"Address {SelectedAddress.StreetName} {SelectedAddress.PostalCode} {selectedAddress.City} is updated.");
+            MessageBox.Show($"Address {SelectedAddress.StreetName} {SelectedAddress.PostalCode} {SelectedAddress.City} is updated.");
             await AddressService.UpdateAddressAsync(SelectedAddress.Id, SelectedAddress);
         }
         public async Task UpdateAddress(int id, Address address)
