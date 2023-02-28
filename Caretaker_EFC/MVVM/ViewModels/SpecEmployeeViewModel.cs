@@ -25,10 +25,23 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public Employee selectedEmployee = null!;
 
         [RelayCommand]
-        public async Task EditEmployee(string Id)//det som läggs in här kan användas på min vies som en commansparameter
+        public async Task EditEmployee()//det som läggs in här kan användas på min vies som en commansparameter
         {
             MessageBox.Show($"Contact {SelectedEmployee.FirstName} {SelectedEmployee.LastName} is updated");
-            await EmployeeService.UpdateEmployeeAsync(SelectedEmployee.Id, SelectedEmployee);
+            await EmployeeService.UpdateEmployeeAsync(SelectedEmployee.Id, selectedEmployee);
         }
+        public async Task Update(Guid id, Employee employee)
+        {
+            await EmployeeService.UpdateEmployeeAsync(id, employee);
+        }
+
+        //oklart om nedan fungerar med string selectedEmployee
+        [RelayCommand]
+        public async Task Remove(string selectedEmployee)
+        {
+            MessageBox.Show($"Are you sure that you want to remove: {SelectedEmployee.FirstName} {SelectedEmployee.LastName}?");
+            await EmployeeService.RemoveEmployeeAsync(selectedEmployee);
+        }
+
     }
 }
