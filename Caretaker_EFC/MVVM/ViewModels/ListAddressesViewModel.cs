@@ -1,13 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Caretaker_EFC.MVVM.Models;
+using Caretaker_EFC.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
-    internal class ListAddressesViewModel : ObservableObject
+    public partial class ListAddressesViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private string pageTitle = "All Addresses";
+
+        [ObservableProperty]
+        private ObservableCollection<Address> addresses = AddressService.Addresses();
     }
 }

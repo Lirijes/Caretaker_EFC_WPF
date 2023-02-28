@@ -1,6 +1,6 @@
 ﻿namespace Caretaker_EFC.MVVM.Models
 {
-    internal class Address
+    public class Address
     {
         public int Id { get; set; }
         public string StreetName { get; set; } = string.Empty;
