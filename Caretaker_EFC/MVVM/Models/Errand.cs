@@ -3,7 +3,7 @@ using System;
 
 namespace Caretaker_EFC.MVVM.Models
 {
-    internal class Errand
+    public class Errand
     {
         public string OrderNumber { get; set; } = null!;
         public DateTime OrderDate { get; set; }

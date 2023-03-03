@@ -1,13 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Caretaker_EFC.MVVM.Models;
+using Caretaker_EFC.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
-    internal class ListErrandsViewModel : ObservableObject
+    public partial class ListErrandsViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private string pageTitle = "All Errands";
+
+        [ObservableProperty]
+        private ObservableCollection<Errand> errands = ErrandService.Errands();
     }
 }

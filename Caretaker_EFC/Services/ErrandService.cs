@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
@@ -15,11 +16,14 @@ namespace Caretaker_EFC.Services
         private static DataContext _context = new DataContext();
 
         public static ObservableCollection<Errand> errands = new ObservableCollection<Errand>();
+        //public static ObservableCollection<Address> addresses = new ObservableCollection<Address>();
 
         public static async Task SaveErrandAsync(Errand errand)
         {
             //här behöver vi vara en viss address för att kunna lägga in ett nytt ärende
             //vet ej om nedan fungerar 
+
+            //behöver att datum och ordernummer genereras automatiskt, hur?
 
             var address = AddressService.GetAddressAsync(errand.AddressId);
 
@@ -27,6 +31,8 @@ namespace Caretaker_EFC.Services
             {
                 var errandEntity = new ErrandEntity();
                 {
+                    
+
                     /*OrderNumber = errand.OrderNumber;
                     OrderDate = errand.OrderDate;
                     CustomerName = errand.CustomerName;
@@ -36,7 +42,7 @@ namespace Caretaker_EFC.Services
                     Status = errand.Status;*/
 
                     //hur får jag detta att fungera? 
-                }
+                };
 
                 _context.Add(errandEntity);
                 await _context.SaveChangesAsync();
