@@ -4,9 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Caretaker_EFC"
+        xmlns:viewmodels="clr-namespace:Caretaker_EFC.MVVM.ViewModels"
+        xmlns:views="clr-namespace:Caretaker_EFC.MVVM.Views"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="LightSlateGray">
+            <Button Command="{Binding GoToEmployeeViewCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToAddressListCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToTaskListCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type views:EmployeeView}">
+                    <views:EmployeeView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:ListAddressesViewModel}">
+                    <views:AddressView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:ListErrandsViewModel}">
+                    <views:ErrandView />
+                </DataTemplate>
+               
+            </ContentControl.Resources>
+        </ContentControl>
 
     </Grid>
 </Window>

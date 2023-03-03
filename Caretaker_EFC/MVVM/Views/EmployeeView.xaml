@@ -4,9 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Caretaker_EFC.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:Caretaker_EFC.MVVM.ViewModels"
+             xmlns:models="clr-namespace:Caretaker_EFC.MVVM.Models"
+             xmlns:views="clr-namespace:Caretaker_EFC.MVVM.Views"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:ListEmployeesViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="0" BorderThickness="0" ItemsSource="{Binding Employees}"  HorizontalAlignment="Stretch" SelectionMode="Single" SelectedItem="{Binding SelectedEmployee}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:Employee}">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="{Binding DisplayName}"/>
+                        </StackPanel>
+
+                        <Expander>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Email}" />
+                                <TextBlock Text="{Binding PhoneNumber}" />
+                            </StackPanel>
+                        </Expander>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:AddEmployeeViewModel}">
+                    <StackPanel>
+                        <TextBlock Text="Enter firstname" Margin="5 0 0 0" />
+                        <TextBox Text="{Binding SelectedEmployee.FirstName}" Padding="5" Margin="5"/>
+
+                        <TextBlock Text="Enter lastname" Margin="5 0 0 0" />
+                        <TextBox Text="{Binding SelectedEmployee.LastName}" Padding="5" Margin="5"/>
+
+                        <TextBlock Text="Enter email" Margin="5 0 0 0" />
+                        <TextBox Text="{Binding SelectedEmployee.Email}" Padding="5" Margin="5"/>
+
+                        <TextBlock Text="Enter phonenumber" Margin="5 0 0 0" />
+                        <TextBox Text="{Binding SelectedEmployee.PhoneNumber}" Padding="5" Margin="5"/>
+
+                        <Button Command="{Binding SaveAsyncCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Column="2" Margin="10">
+            <TextBlock Text="Enter firstname" Margin="5 0 0 0" />
+            <TextBox Text="{Binding SelectedEmployee.FirstName}" Padding="5" Margin="5"/>
+
+            <TextBlock Text="Enter lastname" Margin="5 0 0 0" />
+            <TextBox Text="{Binding SelectedEmployee.LastName}" Padding="5" Margin="5"/>
+
+            <TextBlock Text="Enter email" Margin="5 0 0 0" />
+            <TextBox Text="{Binding SelectedEmployee.Email}" Padding="5" Margin="5"/>
+
+            <TextBlock Text="Enter phonenumber" Margin="5 0 0 0" />
+            <TextBox Text="{Binding SelectedEmployee.PhoneNumber}" Padding="5" Margin="5"/>
+
+            <Button Command="{Binding SaveAsyncCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

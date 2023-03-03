@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Caretaker_EFC.MVVM.Models.Entities
 {
-    internal class AddressEntity
+    public class AddressEntity
     {
         [Key]
         public int Id { get; set; }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Caretaker_EFC.MVVM.Models.Entities
 {
     [Index(nameof(Email), IsUnique = true)] // there cannot be two identical emails
-    internal class EmployeeEntity
+    public class EmployeeEntity
     {
 
         [Key]

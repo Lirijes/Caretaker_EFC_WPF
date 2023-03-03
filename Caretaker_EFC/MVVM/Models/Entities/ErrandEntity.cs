@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Caretaker_EFC.MVVM.Models.Entities
 {
-    internal class ErrandEntity
+    public class ErrandEntity
     {
 
         [Key]
