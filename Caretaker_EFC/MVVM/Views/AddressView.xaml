@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Caretaker_EFC.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:Caretaker_EFC.MVVM.ViewModels"
+             xmlns:views="clr-namespace:Caretaker_EFC.MVVM.Views"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:ListAddressesViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <TextBox Text="hej"></TextBox>
             
     </Grid>
 </UserControl>

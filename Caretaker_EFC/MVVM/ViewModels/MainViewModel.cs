@@ -21,6 +21,12 @@ namespace Caretaker_EFC.MVVM.ViewModels
         #region employee
 
         [RelayCommand]
+        public void GoToEmployees()
+        {
+            CurrentViewModel = new EmployeeViewModel();
+        }
+
+        /*[RelayCommand]
         public void GoToAddEmployee()
         {
             CurrentViewModel = new AddEmployeeViewModel();
@@ -36,7 +42,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public void GoToSpecEmployee()
         {
             CurrentViewModel = new SpecEmployeeViewModel();
-        }
+        }*/
 
         #endregion
 
@@ -64,7 +70,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         #region errand
 
-        [RelayCommand]
+        /*[RelayCommand]
         public void GoToAddTask()
         {
             CurrentViewModel = new AddErrandViewModel();
@@ -80,7 +86,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public void GoToSpecTask()
         {
             CurrentViewModel = new SpecErrandViewModel();
-        }
+        }*/
 
         #endregion
     }

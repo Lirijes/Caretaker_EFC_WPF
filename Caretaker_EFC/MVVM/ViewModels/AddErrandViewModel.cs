@@ -17,6 +17,9 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private string pageTitle = "Add Errand";
 
         [ObservableProperty]
+        private string ordernumber = string.Empty;
+
+        [ObservableProperty]
         private string customername = string.Empty;
 
         [ObservableProperty]
@@ -37,12 +40,14 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
             await ErrandService.SaveErrandAsync(new Errand
             {
+                OrderNumber = Ordernumber,
                 CustomerName = Customername,
                 CustomerEmail= Customeremail,
                 CustomerPhoneNumber = Customerphonenumber,
                 Description = Description
             });
 
+            Ordernumber = string.Empty;
             Customername = string.Empty;
             Customeremail = string.Empty;
             Customerphonenumber = string.Empty;

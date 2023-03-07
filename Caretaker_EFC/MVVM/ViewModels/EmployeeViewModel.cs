@@ -11,14 +11,34 @@ namespace Caretaker_EFC.MVVM.ViewModels
 {
     public partial class EmployeeViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private ObservableObject currentViewModel;
+
+        public EmployeeViewModel()
+        {
+            CurrentViewModel = new ListEmployeesViewModel();
+        }
+
+        [RelayCommand]
+        public void GoToAddEmployee()
+        {
+            CurrentViewModel = new AddEmployeeViewModel();
+        }
+
+        [RelayCommand]
+        public void GoToEmployeeList()
+        {
+            CurrentViewModel = new ListEmployeesViewModel();
+        }
+
+        [RelayCommand]
+        public void GoToSpecEmployee()
+        {
+            CurrentViewModel = new SpecEmployeeViewModel();
+        }
+
 
         /*[ObservableProperty]
-        private ObservableObject employeeCurrentViewModel;
-
-        [ObservableProperty]
-        private ObservableObject listEmployeeViewModel;
-
-        [ObservableProperty]
         private ObservableCollection<Employee> employees = EmployeeService.Employees();
 
         [ObservableProperty]
@@ -26,8 +46,6 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         public EmployeeViewModel()
         {
-            EmployeeCurrentViewModel = new ListEmployeesViewModel();
-            listEmployeeViewModel = new ListEmployeesViewModel();
         }
 
 
@@ -88,30 +106,6 @@ namespace Caretaker_EFC.MVVM.ViewModels
         {
             MessageBox.Show($"Are you sure that you want to remove: {SelectedEmployee.FirstName} {SelectedEmployee.LastName}?");
             await EmployeeService.RemoveEmployeeAsync(selectedEmployee);
-        }
-
-
-        // views
-
-        [RelayCommand]
-        public void GoToAddEmployee()
-        {
-            EmployeeCurrentViewModel = new AddEmployeeViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToEmployeeList()
-        {
-            EmployeeCurrentViewModel = new ListEmployeesViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToSpecEmployee()
-        {
-            EmployeeCurrentViewModel = new SpecEmployeeViewModel();
         }*/
-
-
-
     }
 }

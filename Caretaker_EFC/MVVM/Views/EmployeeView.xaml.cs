@@ -15,9 +15,9 @@ namespace Caretaker_EFC.MVVM.Views
             //hur får jag till det så man kan gå till alla dessa olika sidor från employeeview?
             //och att gå hit från mainwindow?
 
-            new AddEmployeeViewModel();
-            new ListEmployeesViewModel();
-            new SpecEmployeeViewModel();
+            //new AddEmployeeViewModel();
+            //new ListEmployeesViewModel();
+            //new SpecEmployeeViewModel();
         }
     }
 }

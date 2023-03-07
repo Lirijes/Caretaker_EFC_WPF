@@ -17,14 +17,14 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Background="LightSlateGray">
-            <Button Command="{Binding GoToEmployeeViewCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToEmployeesCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
             <Button Command="{Binding GoToAddressListCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
             <Button Command="{Binding GoToTaskListCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type views:EmployeeView}">
+                <DataTemplate DataType="{x:Type viewmodels:EmployeeViewModel}">
                     <views:EmployeeView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:ListAddressesViewModel}">
@@ -33,7 +33,6 @@
                 <DataTemplate DataType="{x:Type viewmodels:ListErrandsViewModel}">
                     <views:ErrandView />
                 </DataTemplate>
-               
             </ContentControl.Resources>
         </ContentControl>
 
