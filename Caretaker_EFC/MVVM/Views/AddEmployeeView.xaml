@@ -20,16 +20,16 @@
 
         <StackPanel Grid.Row="2" Margin="10">
             <TextBlock Text="Enter firstname" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.FirstName}" Padding="5" Margin="5"/>
+            <TextBox Text="{Binding Firstname}" Padding="5" Margin="5"/>
 
             <TextBlock Text="Enter lastname" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.LastName}" Padding="5" Margin="5"/>
+            <TextBox Text="{Binding Lastname}" Padding="5" Margin="5"/>
 
             <TextBlock Text="Enter email" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.Email}" Padding="5" Margin="5"/>
+            <TextBox Text="{Binding Email}" Padding="5" Margin="5"/>
 
             <TextBlock Text="Enter phonenumber" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.PhoneNumber}" Padding="5" Margin="5"/>
+            <TextBox Text="{Binding Phonenumber}" Padding="5" Margin="5"/>
 
             <Button Command="{Binding SaveCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
         </StackPanel>

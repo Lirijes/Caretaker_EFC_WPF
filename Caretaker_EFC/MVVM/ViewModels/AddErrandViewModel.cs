@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
@@ -52,6 +53,8 @@ namespace Caretaker_EFC.MVVM.ViewModels
             Customeremail = string.Empty;
             Customerphonenumber = string.Empty;
             Description = string.Empty;
+
+            MessageBox.Show($"Errand {Ordernumber} is added.");
         }
 
         [ObservableProperty]

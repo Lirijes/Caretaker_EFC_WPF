@@ -17,7 +17,7 @@ namespace Caretaker_EFC.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StreetName = table.Column<string>(type: "nvarchar(50", nullable: false),
+                    StreetName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     PostalCode = table.Column<string>(type: "char(6)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     ErrandId = table.Column<int>(type: "int", nullable: false)
@@ -75,15 +75,15 @@ namespace Caretaker_EFC.Migrations
                     Created = table.Column<DateTime>(type: "datetime", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ErrandOrdernumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EmployeeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmployeeId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    EmployeeIdTwo = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Employees_EmployeeId1",
-                        column: x => x.EmployeeId1,
+                        name: "FK_Comments_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -96,9 +96,9 @@ namespace Caretaker_EFC.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_EmployeeId1",
+                name: "IX_Comments_EmployeeId",
                 table: "Comments",
-                column: "EmployeeId1");
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ErrandOrdernumber",

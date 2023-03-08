@@ -22,7 +22,7 @@ namespace Caretaker_EFC.Services
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
                 Email = employee.Email,
-                PhoneNumber = employee.PhoneNumber,
+                PhoneNumber = employee.PhoneNumber
             };
 
             _context.Add(employeeEntity);

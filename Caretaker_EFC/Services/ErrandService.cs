@@ -99,27 +99,22 @@ namespace Caretaker_EFC.Services
             }
         }
 
-        public static async Task UpdateErrandAsync(string ordernumber, Errand errand)
+        public static async Task UpdateStatusErrandAsync(string ordernumber, Errand errand)
         {
-            //här ska en employee kunna lägga in kommentarer och ändra statusen
-            //var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == errand.EmployeeId);
+            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == errand.EmployeeId);
             var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
 
-            //if(employee != null) // om employee finns gör följande
-            //{
+            if(employee != null) // om employee finns gör följande
+            {
                 if(_errand != null) // om ärendet finns genom ordernummer gör följande
                 {
-                    //kanske behövs en separat metod för att lägga till nya kommentarer 
-                    if(!string.IsNullOrEmpty(errand.Description)) //här ska vi kunna uppdatera beskrivningen, vill snarare kunna lägga in nya kommentarer
-                        _errand.Description = errand.Description;
-
                     if(!string.IsNullOrEmpty(errand.Status))
                         _errand.Status = errand.Status;
 
                     _context.Update(_errand);
                     await _context.SaveChangesAsync();
                 }
-            //}
+            }
         }
 
         public static async Task RemoveErrandAsync(string ordernumber)

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230308115943_InitDatabase")]
+    [Migration("20230308122412_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
@@ -46,7 +46,7 @@ namespace Caretaker_EFC.Migrations
 
                     b.Property<string>("StreetName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -67,12 +67,11 @@ namespace Caretaker_EFC.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("EmployeeId1")
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("EmployeeIdTwo")
+                        .HasColumnType("int");
 
                     b.Property<string>("ErrandOrdernumber")
                         .IsRequired()
@@ -80,7 +79,7 @@ namespace Caretaker_EFC.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId1");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ErrandOrdernumber");
 
@@ -166,7 +165,7 @@ namespace Caretaker_EFC.Migrations
                 {
                     b.HasOne("Caretaker_EFC.MVVM.Models.Entities.EmployeeEntity", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId1")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
@@ -38,6 +39,8 @@ namespace Caretaker_EFC.MVVM.ViewModels
             Streetname = string.Empty;
             City = string.Empty;
             Postalcode = string.Empty;
+
+            MessageBox.Show($"Address {Streetname} is added.");
         }
 
         [ObservableProperty]

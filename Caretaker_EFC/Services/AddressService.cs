@@ -2,6 +2,7 @@
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

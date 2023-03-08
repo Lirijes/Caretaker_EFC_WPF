@@ -10,7 +10,7 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(50")]
+        [Column(TypeName = "nvarchar(50)")]
         public string StreetName { get; set; } = string.Empty;
 
         [Required]

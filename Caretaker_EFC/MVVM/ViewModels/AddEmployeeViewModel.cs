@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
@@ -43,6 +44,8 @@ namespace Caretaker_EFC.MVVM.ViewModels
             Lastname = string.Empty;
             Email = string.Empty;
             Phonenumber = string.Empty;
+
+            MessageBox.Show($"Employee {Firstname} is added.");
         }
 
         [ObservableProperty]
