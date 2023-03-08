@@ -31,7 +31,7 @@
             <TextBlock Text="Enter phonenumber" Margin="5 0 0 0" />
             <TextBox Text="{Binding selectedEmployee.PhoneNumber}" Padding="5" Margin="5"/>
 
-            <Button Command="{Binding SaveAsyncCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
+            <Button Command="{Binding SaveCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
         </StackPanel>
 
     </Grid>

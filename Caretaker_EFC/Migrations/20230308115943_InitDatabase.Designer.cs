@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230308083716_InitDatabase")]
+    [Migration("20230308115943_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />
