@@ -16,9 +16,9 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Background="LightGray">
-            <Button Command="{Binding GoToAddAddressCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
-            <Button Command="{Binding GoToAddressListCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
-            <Button Command="{Binding GoToSpecAddressCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToAddAddressCommand}" Content="&#x2b;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToAddressListCommand}" Content="&#xf022;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToSpecAddressCommand}" Content="&#xf044;" Style="{StaticResource navButton}" BorderThickness="0" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">

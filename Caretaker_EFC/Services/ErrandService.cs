@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
 {
-    internal class ErrandService
+    public static class ErrandService
     {
         private static DataContext _context = new DataContext();
 

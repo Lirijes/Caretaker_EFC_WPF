@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
 {
-    internal class AddressService
+    public static class AddressService
     {
         private static DataContext _context = new DataContext();
 

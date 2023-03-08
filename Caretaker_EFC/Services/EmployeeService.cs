@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
 {
-    internal class EmployeeService
+    public static class EmployeeService
     {
         private static DataContext _context = new DataContext();
 
