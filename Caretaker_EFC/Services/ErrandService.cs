@@ -20,8 +20,6 @@ namespace Caretaker_EFC.Services
             //här behöver vi vara en viss address för att kunna lägga in ett nytt ärende
             //vet ej om nedan fungerar 
 
-            //behöver att datum och ordernummer genereras automatiskt, hur?
-
             var address = AddressService.GetAddressAsync(errand.AddressId);
 
             if(address != null)

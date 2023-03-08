@@ -59,5 +59,8 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         [ObservableProperty]
         private ObservableCollection<Errand> errands = ErrandService.Errands();
+
+        [ObservableProperty]
+        private ObservableCollection<Address> addresses;
     }
 }

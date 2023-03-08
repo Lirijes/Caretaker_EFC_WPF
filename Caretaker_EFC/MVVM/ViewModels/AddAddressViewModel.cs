@@ -43,7 +43,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
             MessageBox.Show($"Address {Streetname} is added.");
         }
 
-        [ObservableProperty]
-        private ObservableCollection<Address> addresses = AddressService.Addresses();
+        //[ObservableProperty]
+        //private ObservableCollection<Address> addresses = AddressService.Addresses();
     }
 }

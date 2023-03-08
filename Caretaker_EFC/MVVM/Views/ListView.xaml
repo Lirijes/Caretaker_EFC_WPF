@@ -47,7 +47,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView BorderThickness="0" Grid.Column="1" ItemsSource="{Binding GetAllAddressesCommand}">
+            <ListView BorderThickness="0" Grid.Column="1" ItemsSource="{Binding Addresses}">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Address}">
                         <StackPanel Margin="2">

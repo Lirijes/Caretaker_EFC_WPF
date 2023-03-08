@@ -14,19 +14,24 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private string pageTitle = "All Lists";
 
         [ObservableProperty]
-        private ObservableCollection<EmployeeEntity> employees = new ObservableCollection<EmployeeEntity>();
+        private ObservableCollection<Employee>? employees;
 
         [ObservableProperty]
-        private ObservableCollection<Address> addresses = AddressService.Addresses();
+        private ObservableCollection<Errand>? errands;
 
         [ObservableProperty]
-        private ObservableCollection<Errand> errands = ErrandService.Errands();
+        private ObservableCollection<Address>? addresses;
 
-
-        [RelayCommand]
-        public async Task GetAllAddresses()
+        public AllListsViewModel()
         {
-            await AddressService.GetAllAddressesAsync();
+            LoadCasesAsync().ConfigureAwait(false);
+        }
+
+        public async Task LoadCasesAsync()
+        {
+            Addresses = new ObservableCollection<Address>(await AddressService.GetAllAddressesAsync());
+            Employees = new ObservableCollection<Employee>(await EmployeeService.GetAllEmployeeAsync());
+            Errands = new ObservableCollection<Errand>(await ErrandService.GetAllErrandsAsync());
         }
     }
 }

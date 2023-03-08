@@ -12,13 +12,17 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         private string pageTitle = "All Addresses";
 
-        [ObservableProperty]
-        private ObservableCollection<Address> addresses = AddressService.Addresses();
+        /*[ObservableProperty]
+        private ObservableCollection<Address>? addresses;
 
-        [RelayCommand]
-        public async Task GetAllAddresses()
+        public ListAddressesViewModel()
         {
-            await AddressService.GetAllAddressesAsync();
+            LoadCasesAsync().ConfigureAwait(false);
         }
+
+        public async Task LoadCasesAsync()
+        {
+            Addresses = new ObservableCollection<Address>(await AddressService.GetAllAddressesAsync());
+        }*/
     }
 }
