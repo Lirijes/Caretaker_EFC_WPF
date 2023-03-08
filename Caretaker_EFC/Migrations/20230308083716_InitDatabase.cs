@@ -66,6 +66,45 @@ namespace Caretaker_EFC.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ErrandOrdernumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    EmployeeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Employees_EmployeeId1",
+                        column: x => x.EmployeeId1,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_Errands_ErrandOrdernumber",
+                        column: x => x.ErrandOrdernumber,
+                        principalTable: "Errands",
+                        principalColumn: "OrderNumber",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_EmployeeId1",
+                table: "Comments",
+                column: "EmployeeId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ErrandOrdernumber",
+                table: "Comments",
+                column: "ErrandOrdernumber");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_Email",
                 table: "Employees",
@@ -82,6 +121,9 @@ namespace Caretaker_EFC.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Comments");
+
             migrationBuilder.DropTable(
                 name: "Employees");
 

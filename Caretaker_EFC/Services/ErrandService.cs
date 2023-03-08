@@ -2,11 +2,8 @@
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
@@ -16,7 +13,7 @@ namespace Caretaker_EFC.Services
         private static DataContext _context = new DataContext();
 
         public static ObservableCollection<Errand> errands = new ObservableCollection<Errand>();
-        //public static ObservableCollection<Address> addresses = new ObservableCollection<Address>();
+        public static ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
 
         public static async Task SaveErrandAsync(Errand errand)
         {
@@ -29,19 +26,15 @@ namespace Caretaker_EFC.Services
 
             if(address != null)
             {
-                var errandEntity = new ErrandEntity();
+                var errandEntity = new ErrandEntity
                 {
-                    
-
-                    /*OrderNumber = errand.OrderNumber;
-                    OrderDate = errand.OrderDate;
-                    CustomerName = errand.CustomerName;
-                    CustomerEmail = errand.CustomerEmail;
-                    CustomerPhoneNumber = errand.CustomerPhoneNumber;
-                    Description = errand.Description;
-                    Status = errand.Status;*/
-
-                    //hur får jag detta att fungera? 
+                    OrderNumber = errand.OrderNumber,
+                    OrderDate = errand.OrderDate,
+                    CustomerName = errand.CustomerName,
+                    CustomerEmail = errand.CustomerEmail,
+                    CustomerPhoneNumber = errand.CustomerPhoneNumber,
+                    Description = errand.Description,
+                    Status = errand.Status
                 };
 
                 _context.Add(errandEntity);
@@ -142,6 +135,35 @@ namespace Caretaker_EFC.Services
         public static ObservableCollection<Errand> Errands() 
         {
             return errands;
+        }
+
+
+        // COMMENTS SERVICE /////////////////////////////////////////
+
+        public static async Task SaveCommentAsync(string ordernumber, Comment comment)
+        {
+            var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
+            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == comment.EmployeeId);
+
+            if (employee != null)
+            {
+                if (_errand != null)
+                {
+                    var commentEntity = new CommentEntity
+                    {
+                        Created = comment.Created,
+                        Description = comment.Description
+                    };
+
+                    _context.Add(commentEntity);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
+        public static ObservableCollection<Comment> Comments()
+        {
+            return comments;
         }
     }
 }

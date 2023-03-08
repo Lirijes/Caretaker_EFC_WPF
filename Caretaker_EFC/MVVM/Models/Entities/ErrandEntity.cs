@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Caretaker_EFC.MVVM.Models.Entities
 {
@@ -30,5 +31,8 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [Required]
         public int AddressId { get; set; }
         public AddressEntity Address { get; set; } = null!; // get Id from Address
+
+        //one to many relationship
+        public ICollection<CommentEntity> Comments = new HashSet<CommentEntity>();
     }
 }

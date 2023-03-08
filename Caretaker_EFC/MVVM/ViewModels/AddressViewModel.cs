@@ -3,32 +3,33 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Caretaker_EFC.MVVM.ViewModels
 {
-    public partial class ErrandViewModel : ObservableObject
+    public partial class AddressViewModel :ObservableObject
     {
         [ObservableProperty]
         private ObservableObject currentViewModel;
 
-        public ErrandViewModel()
+        public AddressViewModel()
         {
-            CurrentViewModel = new ListErrandsViewModel();
+            CurrentViewModel = new AddAddressViewModel();
+        }
+
+
+        [RelayCommand]
+        public void GoToAddAddress()
+        {
+            CurrentViewModel = new AddAddressViewModel();
         }
 
         [RelayCommand]
-        public void GoToAddErrand()
-        {
-            CurrentViewModel = new AddErrandViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToErrandList()
+        public void GoToAddressList()
         {
             CurrentViewModel = new AllListsViewModel();
         }
 
         [RelayCommand]
-        public void GoToSpecErrand()
+        public void GoToSpecAddress()
         {
-            CurrentViewModel = new SpecErrandViewModel();
+            CurrentViewModel = new SpecAddressViewModel();
         }
     }
 }

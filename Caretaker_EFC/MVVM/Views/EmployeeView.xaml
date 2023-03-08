@@ -14,8 +14,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
-            <!--<ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />-->
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Background="LightGray">
@@ -29,8 +27,8 @@
                 <DataTemplate DataType="{x:Type viewmodels:AddEmployeeViewModel}">
                     <views:AddEmployeeView />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:ListEmployeesViewModel}">
-                    <views:EmployeeView />
+                <DataTemplate DataType="{x:Type viewmodels:AllListsViewModel}">
+                    <views:ListView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:SpecEmployeeViewModel}">
                     <views:EmployeeView />

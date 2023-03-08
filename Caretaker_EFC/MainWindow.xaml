@@ -18,8 +18,8 @@
 
         <StackPanel Grid.Column="0" Background="LightSlateGray">
             <Button Command="{Binding GoToEmployeesCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
-            <Button Command="{Binding GoToAddressListCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
-            <Button Command="{Binding GoToTaskListCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToAddressCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToErrandsCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
@@ -27,10 +27,10 @@
                 <DataTemplate DataType="{x:Type viewmodels:EmployeeViewModel}">
                     <views:EmployeeView />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:ListAddressesViewModel}">
+                <DataTemplate DataType="{x:Type viewmodels:AddressViewModel}">
                     <views:AddressView />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:ListErrandsViewModel}">
+                <DataTemplate DataType="{x:Type viewmodels:ErrandViewModel}">
                     <views:ErrandView />
                 </DataTemplate>
             </ContentControl.Resources>

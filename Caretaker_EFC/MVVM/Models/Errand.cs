@@ -18,5 +18,8 @@ namespace Caretaker_EFC.MVVM.Models
 
         public Guid EmployeeId { get; set; }
         public EmployeeEntity Employee { get; set; } = null!;
+
+        public int CommentsId { get; set; }
+        public CommentEntity Comment { get; set; } = null!;
     }
 }

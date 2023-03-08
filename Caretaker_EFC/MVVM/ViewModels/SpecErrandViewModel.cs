@@ -20,14 +20,25 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public Errand selectedErrand = null!;
 
         [RelayCommand]
-        public async Task EditCommentErrand()
+        public async Task EditCommentAndStatusErrand()
         {
-            MessageBox.Show($"Comment added to ordernumber {SelectedErrand.OrderNumber} updated.");
+            MessageBox.Show($"Comment/Status changed on ordernumber: {SelectedErrand.OrderNumber}.");
             await ErrandService.AddCommentToErrandAsync(SelectedErrand.OrderNumber, SelectedErrand);
         }
         public async Task UpdateCommentErrand(string ordernumber, Errand errand)
         {
             await ErrandService.AddCommentToErrandAsync(ordernumber, errand);
+        }
+
+        [RelayCommand]
+        public async Task AddComment(Comment comment)
+        {
+            MessageBox.Show($"Comment added to on ordernumber: {SelectedErrand.OrderNumber}.");
+            await ErrandService.SaveCommentAsync(SelectedErrand.OrderNumber, comment);
+        }
+        public async Task UpdateCErrand(string ordernumber, Comment comment)
+        {
+            await ErrandService.SaveCommentAsync(ordernumber, comment);
         }
 
         [RelayCommand]
@@ -48,5 +59,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
             MessageBox.Show($"Are you sure that you want to remove {SelectedErrand.OrderNumber}");
             await ErrandService.RemoveErrandAsync(selectedErrand);
         }
+
+
     }
 }

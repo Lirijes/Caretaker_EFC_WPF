@@ -50,6 +50,40 @@ namespace Caretaker_EFC.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.CommentEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("EmployeeId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ErrandOrdernumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId1");
+
+                    b.HasIndex("ErrandOrdernumber");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.EmployeeEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -123,6 +157,25 @@ namespace Caretaker_EFC.Migrations
                         .IsUnique();
 
                     b.ToTable("Errands");
+                });
+
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.CommentEntity", b =>
+                {
+                    b.HasOne("Caretaker_EFC.MVVM.Models.Entities.EmployeeEntity", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", "Errand")
+                        .WithMany()
+                        .HasForeignKey("ErrandOrdernumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Errand");
                 });
 
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", b =>

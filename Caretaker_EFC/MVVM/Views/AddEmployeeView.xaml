@@ -8,7 +8,7 @@
              xmlns:models="clr-namespace:Caretaker_EFC.MVVM.Models"
              xmlns:views="clr-namespace:Caretaker_EFC.MVVM.Views"
              mc:Ignorable="d" 
-    
+             d:DataContext="{d:DesignInstance Type=viewmodels:AddEmployeeViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>

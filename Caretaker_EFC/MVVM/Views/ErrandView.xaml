@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Caretaker_EFC.MVVM.Views"
-              xmlns:viewmodels="clr-namespace:Caretaker_EFC.MVVM.ViewModels"
+             xmlns:viewmodels="clr-namespace:Caretaker_EFC.MVVM.ViewModels"
              xmlns:models="clr-namespace:Caretaker_EFC.MVVM.Models"
              xmlns:views="clr-namespace:Caretaker_EFC.MVVM.Views"
              mc:Ignorable="d" 
@@ -17,9 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Background="LightGray">
-            <Button Command="{Binding GoToAddTaskCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
-            <Button Command="{Binding GoToTaskListCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
-            <Button Command="{Binding GoToSpecTaskCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToAddErrandCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToErrandListCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToSpecErrandCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
@@ -27,11 +27,11 @@
                 <DataTemplate DataType="{x:Type viewmodels:AddErrandViewModel}">
                     <views:AddErrandView />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:ListErrandsViewModel}">
-                    <views:ErrandView />
+                <DataTemplate DataType="{x:Type viewmodels:AllListsViewModel}">
+                    <views:ListView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:SpecErrandViewModel}">
-                    <views:ErrandView />
+                    <views:SpecErrandView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

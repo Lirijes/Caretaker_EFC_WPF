@@ -1,5 +1,4 @@
-﻿using Caretaker_EFC.MVVM.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Caretaker_EFC.MVVM.ViewModels
@@ -9,16 +8,10 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         private ObservableObject currentViewModel;
 
-        [ObservableProperty]
-        private ObservableObject listErrandsViewModel;
-
         public MainViewModel()
         {
-            CurrentViewModel = new ListErrandsViewModel();
-            listErrandsViewModel = new ListErrandsViewModel();
+            CurrentViewModel = new AllListsViewModel();
         }
-
-        #region employee
 
         [RelayCommand]
         public void GoToEmployees()
@@ -26,68 +19,16 @@ namespace Caretaker_EFC.MVVM.ViewModels
             CurrentViewModel = new EmployeeViewModel();
         }
 
-        /*[RelayCommand]
-        public void GoToAddEmployee()
+        [RelayCommand]
+        public void GoToErrands()
         {
-            CurrentViewModel = new AddEmployeeViewModel();
+            CurrentViewModel = new ErrandViewModel();
         }
 
         [RelayCommand]
-        public void GoToEmployeeList()
+        public void GoToAddress()
         {
-            CurrentViewModel = new ListEmployeesViewModel();
+            CurrentViewModel = new AddressViewModel();
         }
-
-        [RelayCommand]
-        public void GoToSpecEmployee()
-        {
-            CurrentViewModel = new SpecEmployeeViewModel();
-        }*/
-
-        #endregion
-
-        #region address
-
-        [RelayCommand]
-        public void GoToAddAddress()
-        {
-            CurrentViewModel = new AddAddressViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToAddressList()
-        {
-            CurrentViewModel = new ListAddressesViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToSpecAddress()
-        {
-            CurrentViewModel = new SpecAddressViewModel();
-        }
-
-        #endregion
-
-        #region errand
-
-        /*[RelayCommand]
-        public void GoToAddTask()
-        {
-            CurrentViewModel = new AddErrandViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToTaskList()
-        {
-            CurrentViewModel = new ListErrandsViewModel();
-        }
-
-        [RelayCommand]
-        public void GoToSpecTask()
-        {
-            CurrentViewModel = new SpecErrandViewModel();
-        }*/
-
-        #endregion
     }
 }
