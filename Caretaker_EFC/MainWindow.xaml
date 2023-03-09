@@ -24,6 +24,9 @@
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
             <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:MainViewModel}">
+                    <views:MainView />
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:EmployeeViewModel}">
                     <views:EmployeeView />
                 </DataTemplate>

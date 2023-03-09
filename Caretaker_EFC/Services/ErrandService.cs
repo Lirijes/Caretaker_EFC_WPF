@@ -1,6 +1,7 @@
 ﻿using Caretaker_EFC.Contexts;
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,10 +21,10 @@ namespace Caretaker_EFC.Services
             //här behöver vi vara en viss address för att kunna lägga in ett nytt ärende
             //vet ej om nedan fungerar 
 
-            var address = AddressService.GetAddressAsync(errand.AddressId);
+            //var address = AddressService.GetAddressAsync(errand.AddressId);
 
-            if(address != null)
-            {
+            //if(address != null)
+            //{
                 var errandEntity = new ErrandEntity
                 {
                     OrderNumber = errand.OrderNumber,
@@ -32,12 +33,12 @@ namespace Caretaker_EFC.Services
                     CustomerEmail = errand.CustomerEmail,
                     CustomerPhoneNumber = errand.CustomerPhoneNumber,
                     Description = errand.Description,
-                    Status = errand.Status
+                    Status = "Ej Påbörjad"
                 };
 
                 _context.Add(errandEntity);
                 await _context.SaveChangesAsync();
-            }
+            //}
         }
 
         public static async Task<IEnumerable<Errand>> GetAllErrandsAsync()
@@ -127,7 +128,10 @@ namespace Caretaker_EFC.Services
 
         public static ObservableCollection<Errand> Errands() 
         {
-            return errands;
+            var errandItems = new ObservableCollection<Errand>();
+            foreach (Errand errand in errands)
+                errandItems.Add(errand);
+            return errandItems;
         }
 
 

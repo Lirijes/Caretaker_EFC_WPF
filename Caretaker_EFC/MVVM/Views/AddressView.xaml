@@ -30,7 +30,7 @@
                     <views:ListView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:SpecAddressViewModel}">
-                    <views:AddAddressView />
+                    <views:SpecAddressView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

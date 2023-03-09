@@ -1,6 +1,7 @@
 ﻿using Caretaker_EFC.Contexts;
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Caretaker_EFC.Services
             {
                 var commentEntity = new CommentEntity
                 {
-                    Created = comment.Created,
+                    Created = DateTime.Now,
                     Description = comment.Description
                 };
 

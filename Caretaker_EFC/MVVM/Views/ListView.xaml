@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:models="clr-namespace:Caretaker_EFC.MVVM.Models"
              xmlns:viewmodels="clr-namespace:Caretaker_EFC.MVVM.ViewModels"
-             xmlns:views="clr-namespace:Caretaker_EFC.MVVM.Views"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:AllListsViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -24,11 +24,24 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="All Errands" FontSize="16" FontWeight="Medium" Margin="0 0 0 10"/>
+            <TextBlock Grid.Column="1" Text="All Addresses" FontSize="16" FontWeight="Medium" Margin="0 0 0 10"/>
+            <TextBlock Grid.Column="2" Text="All Employees" FontSize="16" FontWeight="Medium" Margin="0 0 0 10"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             
-            <ListView BorderThickness="0" Grid.Column="0" ItemsSource="{Binding Errands}">
+            <ListView BorderThickness="0 2 2 0" Grid.Column="0" ItemsSource="{Binding Errands}">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Errand}">
                         <StackPanel Margin="2">
+                            <TextBlock Text="All Errands" />
                             <TextBlock Text="{Binding OrderNumber}" FontWeight="Bold" />
                             <Expander>
                                 <StackPanel>
@@ -40,6 +53,7 @@
                                     <TextBlock Text="{Binding Description}" />
                                     <TextBlock Text="{Binding Status}" />
                                     <TextBlock Text="{Binding Comment}" />
+                                    <Button Command="{Binding RemoveErrandCommand}" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>
@@ -47,7 +61,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView BorderThickness="0" Grid.Column="1" ItemsSource="{Binding Addresses}">
+            <ListView BorderThickness="0 2 2 0" Grid.Column="1" ItemsSource="{Binding Addresses}">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Address}">
                         <StackPanel Margin="2">
@@ -58,6 +72,7 @@
                                     <TextBlock Text="{Binding StreetName}" />
                                     <TextBlock Text="{Binding PostalCode}" />
                                     <TextBlock Text="{Binding City}" />
+                                    <Button Command="{Binding RemoveAddressCommand}" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>
@@ -65,7 +80,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView BorderThickness="0" Grid.Column="2" ItemsSource="{Binding Employees}">
+            <ListView BorderThickness="0 2 0 0" Grid.Column="2" ItemsSource="{Binding Employees}">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Employee}">
                         <StackPanel Margin="2">
@@ -77,6 +92,7 @@
                                     <TextBlock Text="{Binding LastName}" />
                                     <TextBlock Text="{Binding Email}" />
                                     <TextBlock Text="{Binding PhoneNumber}" />
+                                    <Button Command="{Binding RemoveEmployeeCommand}" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>

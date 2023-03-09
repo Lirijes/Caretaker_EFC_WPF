@@ -15,30 +15,30 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private string pageTitle = "Edit Contact";
 
         [ObservableProperty]
-        private ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        private ObservableCollection<Employee>? employees;
 
         [ObservableProperty]
         public Employee selectedEmployee = null!;
 
+        public SpecEmployeeViewModel()
+        {
+            LoadCasesAsync().ConfigureAwait(false);
+        }
+
+        public async Task LoadCasesAsync()
+        {
+            Employees = new ObservableCollection<Employee>(await EmployeeService.GetAllEmployeeAsync());
+        }
+
         [RelayCommand]
-        public async Task EditEmployee()//det som läggs in här kan användas på min vies som en commansparameter
+        public async Task EditEmployee()
         {
             MessageBox.Show($"Contact {SelectedEmployee.FirstName} {SelectedEmployee.LastName} is updated");
-            await EmployeeService.UpdateEmployeeAsync(SelectedEmployee.Id, SelectedEmployee);
-            //ändrat ovan selectedEmployee till stor bokstav då det var varning, kanske krånglar
+            await UpdateEmpolyee(SelectedEmployee.Id, SelectedEmployee);
         }
-        public async Task Update(Guid id, Employee employee)
+        public async Task UpdateEmpolyee(Guid id, Employee employee)
         {
             await EmployeeService.UpdateEmployeeAsync(id, employee);
         }
-
-        //oklart om nedan fungerar med string selectedEmployee
-        [RelayCommand]
-        public async Task Remove(string selectedEmployee)
-        {
-            MessageBox.Show($"Are you sure that you want to remove: {SelectedEmployee.FirstName} {SelectedEmployee.LastName}?");
-            await EmployeeService.RemoveEmployeeAsync(selectedEmployee);
-        }
-
     }
 }

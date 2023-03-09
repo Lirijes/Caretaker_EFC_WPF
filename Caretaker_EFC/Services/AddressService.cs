@@ -44,7 +44,7 @@ namespace Caretaker_EFC.Services
             return _addresses;
         }
 
-        public static async Task<Address> GetAddressAsync(int id)
+        public static async Task<Address> GetAddressAsync(int id, Address address)
         {
             var _address = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
             if (_address != null)

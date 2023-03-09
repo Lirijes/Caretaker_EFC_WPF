@@ -10,7 +10,6 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         public AddressViewModel()
         {
-            CurrentViewModel = new AddAddressViewModel();
         }
 
 

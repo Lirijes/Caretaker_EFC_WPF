@@ -14,27 +14,30 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private string pageTitle = "Edit Address";
 
         [ObservableProperty]
-        private ObservableCollection<Address> addresses = new ObservableCollection<Address>();
+        private ObservableCollection<Address>? addresses;
 
         [ObservableProperty]
         public Address selectedAddress = null!;
+
+        public SpecAddressViewModel()
+        {
+            LoadCasesAsync().ConfigureAwait(false);
+        }
+
+        public async Task LoadCasesAsync()
+        {
+            Addresses = new ObservableCollection<Address>(await AddressService.GetAllAddressesAsync());
+        }
 
         [RelayCommand]
         public async Task EditAddress()
         {
             MessageBox.Show($"Address {SelectedAddress.StreetName} {SelectedAddress.PostalCode} {SelectedAddress.City} is updated.");
-            await AddressService.UpdateAddressAsync(SelectedAddress.Id, SelectedAddress);
+            await UpdateAddress(SelectedAddress.Id, SelectedAddress);
         }
         public async Task UpdateAddress(int id, Address address)
         {
             await AddressService.UpdateAddressAsync(id, address);
-        }
-
-        [RelayCommand]
-        public async Task RemoveAddress(int selectedAddress)
-        {
-            MessageBox.Show($"Are you sure that you want to remove: {SelectedAddress.StreetName}?");
-            await AddressService.RemoveAddressAsync(selectedAddress);
         }
     }
 }

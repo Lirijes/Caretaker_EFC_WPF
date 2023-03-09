@@ -2,7 +2,6 @@
 using Caretaker_EFC.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -47,8 +46,5 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
             MessageBox.Show($"Employee {Firstname} is added.");
         }
-
-        [ObservableProperty]
-        private ObservableCollection<Employee> employees = EmployeeService.Employees();
     }
 }

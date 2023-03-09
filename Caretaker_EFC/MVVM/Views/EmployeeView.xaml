@@ -31,68 +31,9 @@
                     <views:ListView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:SpecEmployeeViewModel}">
-                    <views:EmployeeView />
+                    <views:SpecEmployeeView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-
-
-        <!--<ListView Grid.Column="1" BorderThickness="0" ItemsSource="{Binding Employees}"  HorizontalAlignment="Stretch" SelectionMode="Single" SelectedItem="{Binding SelectedEmployee}">
-            <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:Employee}">
-                    <Grid>
-                        <StackPanel>
-                            <TextBlock Text="{Binding DisplayName}"/>
-                        </StackPanel>
-
-                        <Expander>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Email}" />
-                                <TextBlock Text="{Binding PhoneNumber}" />
-                            </StackPanel>
-                        </Expander>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <ListView Grid.Column="2">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="Enter firstname" Margin="5 0 0 0" />
-                        <TextBox Text="{Binding SelectedEmployee.FirstName}" Padding="5" Margin="5"/>
-
-                        <TextBlock Text="Enter lastname" Margin="5 0 0 0" />
-                        <TextBox Text="{Binding SelectedEmployee.LastName}" Padding="5" Margin="5"/>
-
-                        <TextBlock Text="Enter email" Margin="5 0 0 0" />
-                        <TextBox Text="{Binding SelectedEmployee.Email}" Padding="5" Margin="5"/>
-
-                        <TextBlock Text="Enter phonenumber" Margin="5 0 0 0" />
-                        <TextBox Text="{Binding SelectedEmployee.PhoneNumber}" Padding="5" Margin="5"/>
-
-                        <Button Command="{Binding SaveAsyncCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <StackPanel Grid.Column="3" Margin="10">
-            <TextBlock Text="Enter firstname" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.FirstName}" Padding="5" Margin="5"/>
-
-            <TextBlock Text="Enter lastname" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.LastName}" Padding="5" Margin="5"/>
-
-            <TextBlock Text="Enter email" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.Email}" Padding="5" Margin="5"/>
-
-            <TextBlock Text="Enter phonenumber" Margin="5 0 0 0" />
-            <TextBox Text="{Binding selectedEmployee.PhoneNumber}" Padding="5" Margin="5"/>
-
-            <Button Command="{Binding SaveAsyncCommand}" Content="ADD EMPLOYEE" Padding="5" Margin="5"/>
-        </StackPanel>-->
-
     </Grid>
 </UserControl>

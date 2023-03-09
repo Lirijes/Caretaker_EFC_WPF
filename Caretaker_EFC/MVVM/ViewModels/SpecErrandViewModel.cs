@@ -14,7 +14,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private string pageTitle = "Edit Errand";
 
         [ObservableProperty]
-        private ObservableCollection<Errand> errands = new ObservableCollection<Errand>();
+        private ObservableCollection<Errand>? errands;
 
         [ObservableProperty]
         public Errand selectedErrand = null!;
@@ -23,7 +23,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public async Task EditStatusErrand()
         {
             MessageBox.Show($"Status changed on ordernumber: {SelectedErrand.OrderNumber}.");
-            await ErrandService.UpdateStatusErrandAsync(SelectedErrand.OrderNumber, SelectedErrand);
+            await UpdateStatusErrand(SelectedErrand.OrderNumber, SelectedErrand);
         }
         public async Task UpdateStatusErrand(string ordernumber, Errand errand)
         {
@@ -34,7 +34,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public async Task AddComment(Comment comment)
         {
             MessageBox.Show($"Comment added to {SelectedErrand.OrderNumber}.");
-            await ErrandService.SaveCommentAsync(SelectedErrand.OrderNumber, comment);
+            await UpdateCommentErrand(SelectedErrand.OrderNumber, comment);
         }
         public async Task UpdateCommentErrand(string ordernumber, Comment comment)
         {
@@ -61,7 +61,5 @@ namespace Caretaker_EFC.MVVM.ViewModels
             MessageBox.Show($"Are you sure that you want to remove {SelectedErrand.OrderNumber}");
             await ErrandService.RemoveErrandAsync(selectedErrand);
         }
-
-
     }
 }

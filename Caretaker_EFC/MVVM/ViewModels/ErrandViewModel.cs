@@ -10,7 +10,6 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         public ErrandViewModel()
         {
-            CurrentViewModel = new ListErrandsViewModel();
         }
 
         [RelayCommand]

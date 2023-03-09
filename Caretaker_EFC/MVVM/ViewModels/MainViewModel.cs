@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Caretaker_EFC.MVVM.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Caretaker_EFC.MVVM.ViewModels
@@ -10,7 +11,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
         public MainViewModel()
         {
-            CurrentViewModel = new AllListsViewModel();
+            CurrentViewModel= this;
         }
 
         [RelayCommand]

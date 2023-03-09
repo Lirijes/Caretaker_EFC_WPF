@@ -2,6 +2,7 @@
 using Caretaker_EFC.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
     {
         public AddErrandViewModel()
         {
+            LoadCasesAsync().ConfigureAwait(false);
         }
 
         [ObservableProperty]
@@ -32,20 +34,36 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         private string description = string.Empty;
 
+        [ObservableProperty]
+        private ObservableCollection<Address>? addresses;
+
+        [ObservableProperty]
+        public Address selectedAddress = null!;
+
+        public async Task LoadCasesAsync()
+        {
+            Addresses = new ObservableCollection<Address>(await AddressService.GetAllAddressesAsync());
+        }
+        
+        //hjälp hur ska jag markera en selected address så den sparas till ärendet?
+        //[RelayCommand]
+        //public async Task GetAddress(int id, Address selectedAddress)
+        //{
+            //await AddressService.GetAddressAsync(selectedAddress.Id, selectedAddress);
+        //}
+
         [RelayCommand]
         public async Task SaveErrandAsync()
         {
-
-            //behöver att datum och ordernummer genereras automatiskt, hur?
-
-
             await ErrandService.SaveErrandAsync(new Errand
             {
                 OrderNumber = Ordernumber,
+                OrderDate = DateTime.Now,
                 CustomerName = Customername,
                 CustomerEmail= Customeremail,
                 CustomerPhoneNumber = Customerphonenumber,
-                Description = Description
+                Description = Description,
+                Status = "Ej Påbörjad"
             });
 
             Ordernumber = string.Empty;
@@ -56,11 +74,5 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
             MessageBox.Show($"Errand {Ordernumber} is added.");
         }
-
-        [ObservableProperty]
-        private ObservableCollection<Errand> errands = ErrandService.Errands();
-
-        [ObservableProperty]
-        private ObservableCollection<Address> addresses;
     }
 }
