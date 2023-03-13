@@ -62,7 +62,8 @@ namespace Caretaker_EFC.MVVM.ViewModels
                 CustomerName = Customername,
                 CustomerEmail= Customeremail,
                 CustomerPhoneNumber = Customerphonenumber,
-                Description = Description
+                Description = Description,
+                AddressId = SelectedAddress.Id,
             });
 
             Ordernumber = string.Empty;

@@ -19,12 +19,6 @@ namespace Caretaker_EFC.Services
 
         public static async Task SaveErrandAsync(Errand errand)
         {
-            //här behöver vi vara en viss address för att kunna lägga in ett nytt ärende
-            //vet ej om nedan fungerar 
-            var _address = new Address();
-            var address = AddressService.GetAddressAsync(_address);
-
-            if(address != null)
             {
                 var errandEntity = new ErrandEntity
                 {
@@ -34,7 +28,8 @@ namespace Caretaker_EFC.Services
                     CustomerEmail = errand.CustomerEmail,
                     CustomerPhoneNumber = errand.CustomerPhoneNumber,
                     Description = errand.Description,
-                    Status = "Ej Påbörjad"
+                    Status = "Ej Påbörjad",
+                    AddressId = errand.AddressId
                 };
 
                 _context.Add(errandEntity);
@@ -141,21 +136,17 @@ namespace Caretaker_EFC.Services
         public static async Task SaveCommentAsync(string ordernumber, Comment comment)
         {
             var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
-            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == comment.EmployeeId);
 
-            if (employee != null)
+            if (_errand != null)
             {
-                if (_errand != null)
+                var commentEntity = new CommentEntity
                 {
-                    var commentEntity = new CommentEntity
-                    {
-                        Created = comment.Created,
-                        Description = comment.Description
-                    };
+                    Created = comment.Created,
+                    Description = comment.Description
+                };
 
-                    _context.Add(commentEntity);
-                    await _context.SaveChangesAsync();
-                }
+                _context.Add(commentEntity);
+                await _context.SaveChangesAsync();
             }
         }
 

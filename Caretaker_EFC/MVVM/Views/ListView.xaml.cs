@@ -35,5 +35,23 @@ namespace Caretaker_EFC.MVVM.Views
             Task.Run(async () => await ErrandService.RemoveErrandAsync(errand.OrderNumber));
             MessageBox.Show("Errand is removed, please update the page.");
         }
+
+        private void btn_removeAddress_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var address = (Address)button.DataContext;
+
+            Task.Run(async () => await AddressService.RemoveAddressAsync(address.Id));
+            MessageBox.Show("Address is removed, please update the page.");
+        }
+
+        private void btn_removeEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var employee = (Employee)button.DataContext;
+
+            Task.Run(async () => await EmployeeService.RemoveEmployeeAsync(employee.Email));
+            MessageBox.Show("Employee is removed, please update the page.");
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         public string? ErrandOrdernumber { get; set; }
         public ErrandEntity Errand { get; set; } = null!;
 
-        public int EmployeeIdTwo { get; set; }
-        public EmployeeEntity Employee { get; set; } = null!;
+        //public int EmployeeIdTwo { get; set; }
+        //public EmployeeEntity Employee { get; set; } = null!;
     }
 }

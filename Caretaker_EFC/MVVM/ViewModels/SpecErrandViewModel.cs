@@ -19,6 +19,16 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         public Errand selectedErrand = null!;
 
+        public SpecErrandViewModel()
+        {
+            LoadCasesAsync().ConfigureAwait(false);
+        }
+
+        public async Task LoadCasesAsync()
+        {
+            Errands = new ObservableCollection<Errand>(await ErrandService.GetAllErrandsAsync());
+        }
+
         [RelayCommand]
         public async Task EditStatusErrand()
         {

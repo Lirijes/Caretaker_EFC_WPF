@@ -4,6 +4,7 @@ using Caretaker_EFC.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230313125757_employee to comment not implemeted")]
+    partial class employeetocommentnotimplemeted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,6 +36,9 @@ namespace Caretaker_EFC.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("ErrandId")
+                        .HasColumnType("int");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -141,7 +147,8 @@ namespace Caretaker_EFC.Migrations
 
                     b.HasKey("OrderNumber");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
 
                     b.ToTable("Errands");
                 });
@@ -160,12 +167,18 @@ namespace Caretaker_EFC.Migrations
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", b =>
                 {
                     b.HasOne("Caretaker_EFC.MVVM.Models.Entities.AddressEntity", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
+                        .WithOne("Errand")
+                        .HasForeignKey("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.AddressEntity", b =>
+                {
+                    b.Navigation("Errand")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
