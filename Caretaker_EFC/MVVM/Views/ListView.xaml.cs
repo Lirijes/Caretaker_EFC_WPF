@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Caretaker_EFC.MVVM.Models;
+using Caretaker_EFC.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,14 +27,13 @@ namespace Caretaker_EFC.MVVM.Views
             InitializeComponent();
         }
 
-        private void btn_removeErrand_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btn_removeErrand_Click_1(object sender, RoutedEventArgs e)
         {
+            var button = (Button)sender;
+            var errand = (Errand)button.DataContext;
 
+            Task.Run(async () => await ErrandService.RemoveErrandAsync(errand.OrderNumber));
+            MessageBox.Show("Errand is removed, please update the page.");
         }
     }
 }

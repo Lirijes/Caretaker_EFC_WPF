@@ -72,7 +72,7 @@
                                     <TextBlock Text="{Binding StreetName}" />
                                     <TextBlock Text="{Binding PostalCode}" />
                                     <TextBlock Text="{Binding City}" />
-                                    <Button Command="{Binding RemoveAddressCommand}" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
+                                    <Button Name="btn_removeAddress" Click="btn_removeAddress_Click"  Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>
@@ -92,7 +92,7 @@
                                     <TextBlock Text="{Binding LastName}" />
                                     <TextBlock Text="{Binding Email}" />
                                     <TextBlock Text="{Binding PhoneNumber}" />
-                                    <Button Command="{Binding RemoveEmployeeCommand}" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
+                                    <Button Name="btn_removeEmployee" Click="btn_removeEmployee_Click"  Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>
