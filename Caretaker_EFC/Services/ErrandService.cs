@@ -1,9 +1,7 @@
 ﻿using Caretaker_EFC.Contexts;
 using Caretaker_EFC.MVVM.Models;
 using Caretaker_EFC.MVVM.Models.Entities;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -74,41 +72,37 @@ namespace Caretaker_EFC.Services
                 return null!;
         }
         
-        public static async Task AddCommentToErrandAsync(string ordernumber, Errand errand)
-        {
-            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == errand.EmployeeId);
-            var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
+        //public static async Task AddCommentToErrandAsync(string ordernumber, Errand errand)
+        //{
+        //    var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == errand.EmployeeId);
+        //    var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
 
-            if (employee != null)
-            {
-                if(_errand != null)
-                {
-                    var errandDesc = new Errand
-                    {
-                        Comment = errand.Comment
-                    };
+        //    if (employee != null)
+        //    {
+        //        if(_errand != null)
+        //        {
+        //            var errandDesc = new Errand
+        //            {
+        //                Comment = errand.Comment
+        //            };
 
-                    _context.Add(_errand);
-                    await _context.SaveChangesAsync();
-                }
-            }
-        }
+        //            _context.Add(_errand);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //    }
+        //}
 
         public static async Task UpdateStatusErrandAsync(string ordernumber, Errand errand)
         {
-            var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == errand.EmployeeId);
             var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
 
-            if(employee != null) // om employee finns gör följande
+            if(_errand != null) // om ärendet finns genom ordernummer gör följande
             {
-                if(_errand != null) // om ärendet finns genom ordernummer gör följande
-                {
-                    if(!string.IsNullOrEmpty(errand.Status))
-                        _errand.Status = errand.Status;
+                if(!string.IsNullOrEmpty(errand.Status))
+                    _errand.Status = errand.Status;
 
-                    _context.Update(_errand);
-                    await _context.SaveChangesAsync();
-                }
+                _context.Update(_errand);
+                await _context.SaveChangesAsync();
             }
         }
 
@@ -128,31 +122,6 @@ namespace Caretaker_EFC.Services
             foreach (Errand errand in errands)
                 errandItems.Add(errand);
             return errandItems;
-        }
-
-
-        // COMMENTS SERVICE /////////////////////////////////////////
-
-        public static async Task SaveCommentAsync(string ordernumber, Comment comment)
-        {
-            var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
-
-            if (_errand != null)
-            {
-                var commentEntity = new CommentEntity
-                {
-                    Created = comment.Created,
-                    Description = comment.Description
-                };
-
-                _context.Add(commentEntity);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        public static ObservableCollection<Comment> Comments()
-        {
-            return comments;
         }
     }
 }

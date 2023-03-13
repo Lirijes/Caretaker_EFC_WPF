@@ -2,6 +2,7 @@
 using Caretaker_EFC.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,7 +18,13 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private ObservableCollection<Errand>? errands;
 
         [ObservableProperty]
+        private ObservableCollection<Comment>? comments;
+
+        [ObservableProperty]
         public Errand selectedErrand = null!;
+
+        [ObservableProperty]
+        private string description = string.Empty;
 
         public SpecErrandViewModel()
         {
@@ -27,6 +34,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public async Task LoadCasesAsync()
         {
             Errands = new ObservableCollection<Errand>(await ErrandService.GetAllErrandsAsync());
+            Comments = new ObservableCollection<Comment>(await CommentService.GetAllCOmmentAsync());
         }
 
         [RelayCommand]
@@ -41,15 +49,16 @@ namespace Caretaker_EFC.MVVM.ViewModels
         }
 
         [RelayCommand]
-        public async Task AddComment(Comment comment)
+        public async Task SaveCommentAsync()
         {
-            MessageBox.Show($"Comment added to {SelectedErrand.OrderNumber}.");
-            await UpdateCommentErrand(SelectedErrand.OrderNumber, comment);
-        }
-        public async Task UpdateCommentErrand(string ordernumber, Comment comment)
-        {
-            MessageBox.Show($"Comment added to {SelectedErrand.OrderNumber}.");
-            await ErrandService.SaveCommentAsync(ordernumber, comment);
+            await CommentService.SaveCommentAsync(new Comment
+            {
+                Created = DateTime.Now,
+                Description = Description,
+                ErrandOrdernumber = SelectedErrand.OrderNumber
+            });
+
+            MessageBox.Show($"Comment is added.");
         }
 
         [RelayCommand]
