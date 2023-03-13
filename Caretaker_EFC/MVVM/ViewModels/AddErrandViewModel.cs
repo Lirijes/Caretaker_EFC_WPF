@@ -46,11 +46,11 @@ namespace Caretaker_EFC.MVVM.ViewModels
         }
         
         //hjälp hur ska jag markera en selected address så den sparas till ärendet?
-        //[RelayCommand]
-        //public async Task GetAddress(int id, Address selectedAddress)
-        //{
-            //await AddressService.GetAddressAsync(selectedAddress.Id, selectedAddress);
-        //}
+        [RelayCommand]
+        public async Task GetAddress(Address selectedAddress)
+        {
+            await AddressService.GetAddressAsync(selectedAddress);
+        }
 
         [RelayCommand]
         public async Task SaveErrandAsync()
@@ -62,8 +62,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
                 CustomerName = Customername,
                 CustomerEmail= Customeremail,
                 CustomerPhoneNumber = Customerphonenumber,
-                Description = Description,
-                Status = "Ej Påbörjad"
+                Description = Description
             });
 
             Ordernumber = string.Empty;

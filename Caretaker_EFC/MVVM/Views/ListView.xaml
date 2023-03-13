@@ -53,7 +53,7 @@
                                     <TextBlock Text="{Binding Description}" />
                                     <TextBlock Text="{Binding Status}" />
                                     <TextBlock Text="{Binding Comment}" />
-                                    <Button Command="{Binding RemoveErrandCommand}" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
+                                    <Button Name="btn_removeErrand" Click="btn_removeErrand_Click_1" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>
                         </StackPanel>

@@ -12,7 +12,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
     public partial class SpecEmployeeViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string pageTitle = "Edit Contact";
+        private string pageTitle = "Edit Employee";
 
         [ObservableProperty]
         private ObservableCollection<Employee>? employees;

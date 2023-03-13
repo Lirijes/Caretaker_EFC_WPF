@@ -24,5 +24,15 @@ namespace Caretaker_EFC.MVVM.Views
         {
             InitializeComponent();
         }
+
+        private void btn_removeErrand_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_removeErrand_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

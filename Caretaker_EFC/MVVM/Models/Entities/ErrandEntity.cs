@@ -28,7 +28,6 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [StringLength(20)]
         public string Status { get; set; } = string.Empty;
 
-        [Required]
         public int AddressId { get; set; }
         public AddressEntity Address { get; set; } = null!; // get Id from Address
 
