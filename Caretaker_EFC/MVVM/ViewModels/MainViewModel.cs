@@ -31,5 +31,11 @@ namespace Caretaker_EFC.MVVM.ViewModels
         {
             CurrentViewModel = new AddressViewModel();
         }
+
+        [RelayCommand]
+        public void GoToStatus()
+        {
+            CurrentViewModel = new AddStatusViewModel();
+        }
     }
 }

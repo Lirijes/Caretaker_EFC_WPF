@@ -5,7 +5,7 @@
 namespace Caretaker_EFC.Migrations
 {
     /// <inheritdoc />
-    public partial class statusentityadded : Migration
+    public partial class statusadded : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

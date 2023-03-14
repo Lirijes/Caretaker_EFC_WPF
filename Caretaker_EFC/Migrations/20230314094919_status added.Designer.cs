@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230313130440_status entity added")]
-    partial class statusentityadded
+    [Migration("20230314094919_status added")]
+    partial class statusadded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,6 +147,23 @@ namespace Caretaker_EFC.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Errands");
+                });
+
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.StatusEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.CommentEntity", b =>

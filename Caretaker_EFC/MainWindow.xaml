@@ -20,6 +20,7 @@
             <Button Command="{Binding GoToEmployeesCommand}" Content="&#xf007;" Style="{StaticResource navButton}" BorderThickness="0" />
             <Button Command="{Binding GoToAddressCommand}" Content="&#xf1ad;" Style="{StaticResource navButton}" BorderThickness="0" />
             <Button Command="{Binding GoToErrandsCommand}" Content="&#xf274;" Style="{StaticResource navButton}" BorderThickness="0" />
+            <Button Command="{Binding GoToStatusCommand}" Content="&#xf0fe;" Style="{StaticResource navButton}" BorderThickness="0" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
@@ -35,6 +36,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:ErrandViewModel}">
                     <views:ErrandView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:AddStatusViewModel}">
+                    <views:AddStatusView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

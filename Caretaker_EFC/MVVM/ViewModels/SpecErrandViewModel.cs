@@ -21,6 +21,9 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private ObservableCollection<Comment>? comments;
 
         [ObservableProperty]
+        private ObservableCollection<Status>? statuses;
+
+        [ObservableProperty]
         public Errand selectedErrand = null!;
 
         [ObservableProperty]
@@ -35,6 +38,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         {
             Errands = new ObservableCollection<Errand>(await ErrandService.GetAllErrandsAsync());
             Comments = new ObservableCollection<Comment>(await CommentService.GetAllCOmmentAsync());
+            Statuses = new ObservableCollection<Status>(await StatusService.GetAllStatusAsync());
         }
 
         [RelayCommand]

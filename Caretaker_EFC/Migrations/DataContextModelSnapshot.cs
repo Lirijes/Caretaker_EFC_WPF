@@ -146,6 +146,23 @@ namespace Caretaker_EFC.Migrations
                     b.ToTable("Errands");
                 });
 
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.StatusEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
+                });
+
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.CommentEntity", b =>
                 {
                     b.HasOne("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", "Errand")

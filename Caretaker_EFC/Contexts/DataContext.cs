@@ -42,5 +42,6 @@ namespace Caretaker_EFC.Contexts
         public DbSet<EmployeeEntity> Employees { get; set; } = null!;
         public DbSet<ErrandEntity> Errands { get; set; } = null!;
         public DbSet<CommentEntity> Comments { get; set; } = null!;
+        public DbSet<StatusEntity> Status { get; set; } = null!;
     }
 }
