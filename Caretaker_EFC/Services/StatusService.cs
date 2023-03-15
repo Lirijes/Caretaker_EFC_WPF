@@ -14,12 +14,12 @@ namespace Caretaker_EFC.Services
 
         public static ObservableCollection<Status> statuses = new ObservableCollection<Status>();
 
-        public static async Task SaveStatusAsync(Status statuses)
+        public static async Task SaveStatusAsync(Status status)
         {
             var statusEntity = new StatusEntity
             {
-                Id = statuses.Id,
-                Status = statuses.StatusName
+                Id = status.Id,
+                Status = status.StatusName
             };
 
             _context.Add(statusEntity);
@@ -40,13 +40,13 @@ namespace Caretaker_EFC.Services
             return _status;
         }
 
-        public static async Task UpdateStatusAsync(int id, Status statuses)
+        public static async Task UpdateStatusAsync(int id, Status status)
         {
             var _statusEntity = await _context.Statuses.FirstOrDefaultAsync(x => x.Id == id);
             if (_statusEntity != null)
             {
-                if(!string.IsNullOrEmpty(statuses.StatusName)) 
-                    _statusEntity.Status = statuses.StatusName;
+                if(!string.IsNullOrEmpty(status.StatusName)) 
+                    _statusEntity.Status = status.StatusName;
 
                 _context.Update(_statusEntity);
                 await _context.SaveChangesAsync();

@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -44,19 +45,13 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [RelayCommand]
         public async Task EditStatus()
         {
-            //MessageBox.Show($"Address {SelectedErrand.} {SelectedAddress.PostalCode} {SelectedAddress.City} is updated.");
+            MessageBox.Show($"Status {SelectedErrand.OrderNumber} is updated.");
+            await UpdateSatusErrand(SelectedErrand.StatusId, SelectedErrand.StatusId);
         }
-
-        //[RelayCommand]
-        //public async Task EditStatusErrand()
-        //{
-        //    MessageBox.Show($"Status changed on ordernumber: {SelectedErrand.OrderNumber}.");
-        //    await UpdateStatusErrand(SelectedErrand.OrderNumber, SelectedErrand);
-        //}
-        //public async Task UpdateStatusErrand(string ordernumber, Errand errand)
-        //{
-        //    await ErrandService.UpdateStatusErrandAsync(ordernumber, errand);
-        //}
+        public async Task UpdateSatusErrand(int id, Status status)
+        {
+            await StatusService.UpdateStatusAsync(id, status);
+        }
 
         [RelayCommand]
         public async Task SaveCommentAsync()
@@ -69,19 +64,6 @@ namespace Caretaker_EFC.MVVM.ViewModels
             });
 
             MessageBox.Show($"Comment is added.");
-        }
-
-        [RelayCommand]
-        public async Task EditErrand()
-        {
-            MessageBox.Show($"Errand with ordernumber {SelectedErrand.OrderNumber} is updated ");
-            //await ErrandService.UpdateErrandAsync(SelectedErrand.OrderNumber, SelectedErrand);
-        }
-
-        public async Task UpdateErrand(string ordernumber, Errand errand)
-        {
-            //inte nödvändiga atm
-            //await ErrandService.UpdateErrandAsync(ordernumber, errand);
         }
 
         [RelayCommand]

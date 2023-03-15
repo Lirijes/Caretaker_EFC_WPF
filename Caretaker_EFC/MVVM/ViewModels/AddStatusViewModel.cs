@@ -30,7 +30,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
 
             Statusname = string.Empty;
 
-            MessageBox.Show($"Address {Statusname} is added.");
+            MessageBox.Show($"Status {Statusname} added.");
         }
     }
 }

@@ -21,5 +21,8 @@ namespace Caretaker_EFC.MVVM.Models
 
         public int CommentsId { get; set; }
         public CommentEntity Comment { get; set; } = null!;
+
+        public int StatusId { get; set; }
+        public StatusEntity Status { get; set; } = null!;
     }
 }
