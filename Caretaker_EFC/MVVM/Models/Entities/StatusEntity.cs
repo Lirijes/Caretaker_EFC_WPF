@@ -8,8 +8,12 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [Column(TypeName = "nvarchar(20)")]
         public string Status { get; set; } = string.Empty;
+
+        //[Required]
+        //public string? ErrandOrdernumber { get; set; }
+        //public ErrandEntity Errand { get; set; } = null!;
+
     }
 }

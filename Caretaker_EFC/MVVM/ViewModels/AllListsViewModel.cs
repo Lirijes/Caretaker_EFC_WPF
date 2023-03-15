@@ -20,6 +20,9 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         private ObservableCollection<Address>? addresses;
 
+        [ObservableProperty]
+        private ObservableCollection<Comment>? comments;
+
         public AllListsViewModel()
         {
             LoadCasesAsync().ConfigureAwait(false);
@@ -30,6 +33,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
             Addresses = new ObservableCollection<Address>(await AddressService.GetAllAddressesAsync());
             Employees = new ObservableCollection<Employee>(await EmployeeService.GetAllEmployeeAsync());
             Errands = new ObservableCollection<Errand>(await ErrandService.GetAllErrandsAsync());
+            Comments = new ObservableCollection<Comment>(await CommentService.GetAllCOmmentAsync());
         }
     }
 }

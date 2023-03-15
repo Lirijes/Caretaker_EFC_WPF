@@ -21,7 +21,7 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [Column(TypeName = "nvarchar(50)")]
         public string City { get; set; } = string.Empty;
 
-        // since employee can have more than 1 addresses its an -> one to many relation
+        // since address can have more than 1 errands its an -> one to many relation
         public ICollection<ErrandEntity> Errands = new HashSet<ErrandEntity>();
     }
 }

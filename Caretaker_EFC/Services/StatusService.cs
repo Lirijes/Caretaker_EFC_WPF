@@ -12,14 +12,14 @@ namespace Caretaker_EFC.Services
     {
         private static DataContext _context = new DataContext();
 
-        public static ObservableCollection<Status> status = new ObservableCollection<Status>();
+        public static ObservableCollection<Status> statuses = new ObservableCollection<Status>();
 
-        public static async Task SaveStatusAsync(Status status)
+        public static async Task SaveStatusAsync(Status statuses)
         {
             var statusEntity = new StatusEntity
             {
-                Id = status.Id,
-                Status = status.StatusName
+                Id = statuses.Id,
+                Status = statuses.StatusName
             };
 
             _context.Add(statusEntity);
@@ -30,14 +30,27 @@ namespace Caretaker_EFC.Services
         {
             var _status = new List<Status>();
 
-            foreach (var _statuss in await _context.Status.ToListAsync())
+            foreach (var _statuses in await _context.Statuses.ToListAsync())
                 _status.Add(new Status
                 {
-                    Id = _statuss.Id,
-                    StatusName = _statuss.Status
+                    Id = _statuses.Id,
+                    StatusName = _statuses.Status
                 });
 
             return _status;
+        }
+
+        public static async Task UpdateStatusAsync(int id, Status statuses)
+        {
+            var _statusEntity = await _context.Statuses.FirstOrDefaultAsync(x => x.Id == id);
+            if (_statusEntity != null)
+            {
+                if(!string.IsNullOrEmpty(statuses.StatusName)) 
+                    _statusEntity.Status = statuses.StatusName;
+
+                _context.Update(_statusEntity);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

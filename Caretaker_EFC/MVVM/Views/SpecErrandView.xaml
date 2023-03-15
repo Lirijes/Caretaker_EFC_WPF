@@ -36,7 +36,7 @@
 
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left">
                                 <TextBlock Text="{Binding OrderNumber}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding Address}" />
+                                <TextBlock Text="{Binding Address.StreetName}" />
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -51,7 +51,8 @@
                                     <TextBlock Text="{Binding CustomerPhoneNumber}" />
                                     <TextBlock Text="{Binding Description}" />
                                     <TextBlock Text="{Binding Status}" />
-                                    <ListView ItemsSource="{Binding Comment}">
+                                    <TextBlock Text="{Binding Comments}" />
+                                    <ListView ItemsSource="{Binding Comments}">
                                         <ListView.ItemTemplate>
                                             <DataTemplate DataType="{x:Type models:Comment}">
                                                 <ListView>

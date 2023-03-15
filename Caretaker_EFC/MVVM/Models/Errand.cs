@@ -11,7 +11,7 @@ namespace Caretaker_EFC.MVVM.Models
         public string CustomerEmail { get; set; } = string.Empty;
         public string CustomerPhoneNumber { get; set; } = string.Empty;
         public string? Description { get; set; }
-        public string Status { get; set; } = string.Empty;
+        //public string Status { get; set; } = string.Empty;
 
         public int AddressId { get; set; }
         public AddressEntity Address { get; set; } = null!; // get Id from Address

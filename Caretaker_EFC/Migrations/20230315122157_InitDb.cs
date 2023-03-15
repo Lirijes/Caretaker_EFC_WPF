@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Caretaker_EFC.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabase : Migration
+    public partial class InitDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,7 @@ namespace Caretaker_EFC.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StreetName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     PostalCode = table.Column<string>(type: "char(6)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    ErrandId = table.Column<int>(type: "int", nullable: false)
+                    City = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,6 +42,19 @@ namespace Caretaker_EFC.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Statuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(type: "nvarchar(20)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Statuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Errands",
                 columns: table => new
                 {
@@ -52,7 +64,6 @@ namespace Caretaker_EFC.Migrations
                     CustomerEmail = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     CustomerPhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -74,19 +85,11 @@ namespace Caretaker_EFC.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(type: "datetime", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ErrandOrdernumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EmployeeIdTwo = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ErrandOrdernumber = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comments_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comments_Errands_ErrandOrdernumber",
                         column: x => x.ErrandOrdernumber,
@@ -94,11 +97,6 @@ namespace Caretaker_EFC.Migrations
                         principalColumn: "OrderNumber",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_EmployeeId",
-                table: "Comments",
-                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ErrandOrdernumber",
@@ -114,8 +112,7 @@ namespace Caretaker_EFC.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Errands_AddressId",
                 table: "Errands",
-                column: "AddressId",
-                unique: true);
+                column: "AddressId");
         }
 
         /// <inheritdoc />
@@ -126,6 +123,9 @@ namespace Caretaker_EFC.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Statuses");
 
             migrationBuilder.DropTable(
                 name: "Errands");

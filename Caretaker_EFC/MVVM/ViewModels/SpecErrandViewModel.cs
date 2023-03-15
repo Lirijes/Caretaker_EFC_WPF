@@ -42,15 +42,21 @@ namespace Caretaker_EFC.MVVM.ViewModels
         }
 
         [RelayCommand]
-        public async Task EditStatusErrand()
+        public async Task EditStatus()
         {
-            MessageBox.Show($"Status changed on ordernumber: {SelectedErrand.OrderNumber}.");
-            await UpdateStatusErrand(SelectedErrand.OrderNumber, SelectedErrand);
+            //MessageBox.Show($"Address {SelectedErrand.} {SelectedAddress.PostalCode} {SelectedAddress.City} is updated.");
         }
-        public async Task UpdateStatusErrand(string ordernumber, Errand errand)
-        {
-            await ErrandService.UpdateStatusErrandAsync(ordernumber, errand);
-        }
+
+        //[RelayCommand]
+        //public async Task EditStatusErrand()
+        //{
+        //    MessageBox.Show($"Status changed on ordernumber: {SelectedErrand.OrderNumber}.");
+        //    await UpdateStatusErrand(SelectedErrand.OrderNumber, SelectedErrand);
+        //}
+        //public async Task UpdateStatusErrand(string ordernumber, Errand errand)
+        //{
+        //    await ErrandService.UpdateStatusErrandAsync(ordernumber, errand);
+        //}
 
         [RelayCommand]
         public async Task SaveCommentAsync()

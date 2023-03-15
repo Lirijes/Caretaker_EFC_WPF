@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230313125757_employee to comment not implemeted")]
-    partial class employeetocommentnotimplemeted
+    [Migration("20230315122157_InitDb")]
+    partial class InitDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,6 @@ namespace Caretaker_EFC.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("ErrandId")
-                        .HasColumnType("int");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -140,17 +137,28 @@ namespace Caretaker_EFC.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.HasKey("OrderNumber");
 
-                    b.HasIndex("AddressId")
-                        .IsUnique();
+                    b.HasIndex("AddressId");
 
                     b.ToTable("Errands");
+                });
+
+            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.StatusEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.CommentEntity", b =>
@@ -167,18 +175,12 @@ namespace Caretaker_EFC.Migrations
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", b =>
                 {
                     b.HasOne("Caretaker_EFC.MVVM.Models.Entities.AddressEntity", "Address")
-                        .WithOne("Errand")
-                        .HasForeignKey("Caretaker_EFC.MVVM.Models.Entities.ErrandEntity", "AddressId")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.AddressEntity", b =>
-                {
-                    b.Navigation("Errand")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

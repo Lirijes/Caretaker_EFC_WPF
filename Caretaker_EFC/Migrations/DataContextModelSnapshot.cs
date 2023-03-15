@@ -134,11 +134,6 @@ namespace Caretaker_EFC.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.HasKey("OrderNumber");
 
                     b.HasIndex("AddressId");
@@ -160,7 +155,7 @@ namespace Caretaker_EFC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status");
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("Caretaker_EFC.MVVM.Models.Entities.CommentEntity", b =>

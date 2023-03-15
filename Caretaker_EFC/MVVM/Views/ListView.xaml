@@ -41,7 +41,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Errand}">
                         <StackPanel Margin="2">
-                            <TextBlock Text="All Errands" />
                             <TextBlock Text="{Binding OrderNumber}" FontWeight="Bold" />
                             <Expander>
                                 <StackPanel>

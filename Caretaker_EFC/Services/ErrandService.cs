@@ -26,7 +26,7 @@ namespace Caretaker_EFC.Services
                     CustomerEmail = errand.CustomerEmail,
                     CustomerPhoneNumber = errand.CustomerPhoneNumber,
                     Description = errand.Description,
-                    Status = "Ej Påbörjad",
+                    //Status = "Ej Påbörjad",
                     AddressId = errand.AddressId
                 };
 
@@ -48,7 +48,7 @@ namespace Caretaker_EFC.Services
                     CustomerEmail = _errand.CustomerEmail,
                     CustomerPhoneNumber = _errand.CustomerPhoneNumber,
                     Description = _errand.Description,
-                    Status = _errand.Status
+                    //Status = _errand.Status
                 });
 
             return _errands;
@@ -66,45 +66,25 @@ namespace Caretaker_EFC.Services
                     CustomerEmail = _errand.CustomerEmail,
                     CustomerPhoneNumber = _errand.CustomerPhoneNumber,
                     Description = _errand.Description,
-                    Status = _errand.Status
+                    //Status = _errand.Status
                 };
             else
                 return null!;
         }
-        
-        //public static async Task AddCommentToErrandAsync(string ordernumber, Errand errand)
+
+        //public static async Task UpdateStatusErrandAsync(string ordernumber, Errand errand)
         //{
-        //    var employee = await _context.Employees.FirstOrDefaultAsync(x => x.Id == errand.EmployeeId);
         //    var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
 
-        //    if (employee != null)
+        //    if(_errand != null) // om ärendet finns genom ordernummer gör följande
         //    {
-        //        if(_errand != null)
-        //        {
-        //            var errandDesc = new Errand
-        //            {
-        //                Comment = errand.Comment
-        //            };
+        //        if(!string.IsNullOrEmpty(errand.Status))
+        //            _errand.Status = errand.Status;
 
-        //            _context.Add(_errand);
-        //            await _context.SaveChangesAsync();
-        //        }
+        //        _context.Update(_errand);
+        //        await _context.SaveChangesAsync();
         //    }
         //}
-
-        public static async Task UpdateStatusErrandAsync(string ordernumber, Errand errand)
-        {
-            var _errand = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
-
-            if(_errand != null) // om ärendet finns genom ordernummer gör följande
-            {
-                if(!string.IsNullOrEmpty(errand.Status))
-                    _errand.Status = errand.Status;
-
-                _context.Update(_errand);
-                await _context.SaveChangesAsync();
-            }
-        }
 
         public static async Task RemoveErrandAsync(string ordernumber)
         {
