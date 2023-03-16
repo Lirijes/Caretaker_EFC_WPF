@@ -54,19 +54,13 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [RelayCommand]
         public async Task SaveStatusAsync()
         {
+            MessageBox.Show("Status updated.");
             await UpdateStatusErrand(SelectedErrand.StatusId, SelectedStatus);
         }
         public async Task UpdateStatusErrand(int id, Status status)
         {
             await StatusService.UpdateStatusAsync(id, status);
         }
-
-        [RelayCommand]
-        public async Task SaveSEAsync()
-        {
-            await StatusService.SaveStatusAsync(new Status { Id = SelectedStatus.Id });
-        }
-
 
         
         //ej fått till detta grafiskt än.
@@ -80,7 +74,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
                 ErrandOrdernumber = SelectedErrand.OrderNumber
             });
 
-            MessageBox.Show($"Comment is added.");
+            MessageBox.Show("Comment is added.");
         }
     }
 }
