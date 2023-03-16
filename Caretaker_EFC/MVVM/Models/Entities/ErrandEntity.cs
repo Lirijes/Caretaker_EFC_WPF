@@ -25,18 +25,13 @@ namespace Caretaker_EFC.MVVM.Models.Entities
 
         public string? Description { get; set; }
 
-        //[StringLength(20)]
-        //public string Status { get; set; } = string.Empty;
-
         public int AddressId { get; set; }
         public AddressEntity Address { get; set; } = null!; // get Id from Address
 
-
-        //public int StatusId { get; set; }
-        //public StatusEntity Status { get; set; } = null!;
+        public int StatusId { get; set; }
+        public StatusEntity Status { get; set; } = null!;
 
         //one to many relationship
         public ICollection<CommentEntity> Comments = new HashSet<CommentEntity>();
-        public ICollection<StatusEntity> Statuses = new HashSet<StatusEntity>();
     }
 }

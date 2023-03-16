@@ -38,18 +38,30 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private ObservableCollection<Address>? addresses;
 
         [ObservableProperty]
+        private ObservableCollection<Status>? statuses;
+
+        [ObservableProperty]
         public Address selectedAddress = null!;
+
+        [ObservableProperty]
+        public Status selectedStatus = null!;
 
         public async Task LoadCasesAsync()
         {
             Addresses = new ObservableCollection<Address>(await AddressService.GetAllAddressesAsync());
+            Statuses = new ObservableCollection<Status>(await StatusService.GetAllStatusAsync());
         }
-        
-        //hjälp hur ska jag markera en selected address så den sparas till ärendet?
+       
         [RelayCommand]
         public async Task GetAddress(Address selectedAddress)
         {
             await AddressService.GetAddressAsync(selectedAddress);
+        }
+
+        [RelayCommand]
+        public async Task GetStatus(Status selectedStatus)
+        {
+            await StatusService.GetStatusAsync(selectedStatus);
         }
 
         [RelayCommand]
@@ -64,6 +76,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
                 CustomerPhoneNumber = Customerphonenumber,
                 Description = Description,
                 AddressId = SelectedAddress.Id,
+                StatusId = SelectedStatus.Id
             });
 
             Ordernumber = string.Empty;

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Caretaker_EFC.MVVM.Models.Entities
@@ -11,9 +12,6 @@ namespace Caretaker_EFC.MVVM.Models.Entities
         [Column(TypeName = "nvarchar(20)")]
         public string Status { get; set; } = string.Empty;
 
-        //[Required]
-        //public string? ErrandOrdernumber { get; set; }
-        //public ErrandEntity Errand { get; set; } = null!;
-
+        public ICollection<ErrandEntity> Errands = new HashSet<ErrandEntity>();
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caretaker_EFC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230315122157_InitDb")]
-    partial class InitDb
+    [Migration("20230316081742_Init Database")]
+    partial class InitDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,9 +137,14 @@ namespace Caretaker_EFC.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderNumber");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Errands");
                 });
@@ -180,7 +185,15 @@ namespace Caretaker_EFC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Caretaker_EFC.MVVM.Models.Entities.StatusEntity", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Address");
+
+                    b.Navigation("Status");
                 });
 #pragma warning restore 612, 618
         }

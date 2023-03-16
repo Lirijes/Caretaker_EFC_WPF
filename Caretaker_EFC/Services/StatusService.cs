@@ -40,13 +40,25 @@ namespace Caretaker_EFC.Services
             return _status;
         }
 
+        public static async Task<Status> GetStatusAsync(Status status)
+        {
+            var _status = await _context.Statuses.FirstOrDefaultAsync(x => x.Id == status.Id);
+            if (_status != null)
+                return new Status
+                {
+                    Id = _status.Id,
+                    StatusName = _status.Status
+                };
+            else
+                return null!;
+        }
+
         public static async Task UpdateStatusAsync(int id, Status status)
         {
             var _statusEntity = await _context.Statuses.FirstOrDefaultAsync(x => x.Id == id);
             if (_statusEntity != null)
             {
-                if(!string.IsNullOrEmpty(status.StatusName)) 
-                    _statusEntity.Status = status.StatusName;
+                _statusEntity.Id = status.Id;
 
                 _context.Update(_statusEntity);
                 await _context.SaveChangesAsync();

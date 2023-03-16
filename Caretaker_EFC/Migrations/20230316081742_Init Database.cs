@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Caretaker_EFC.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDb : Migration
+    public partial class InitDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,7 +64,8 @@ namespace Caretaker_EFC.Migrations
                     CustomerEmail = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     CustomerPhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: false)
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,6 +74,12 @@ namespace Caretaker_EFC.Migrations
                         name: "FK_Errands_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Errands_Statuses_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Statuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -113,6 +120,11 @@ namespace Caretaker_EFC.Migrations
                 name: "IX_Errands_AddressId",
                 table: "Errands",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Errands_StatusId",
+                table: "Errands",
+                column: "StatusId");
         }
 
         /// <inheritdoc />
@@ -125,13 +137,13 @@ namespace Caretaker_EFC.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Statuses");
-
-            migrationBuilder.DropTable(
                 name: "Errands");
 
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Statuses");
         }
     }
 }

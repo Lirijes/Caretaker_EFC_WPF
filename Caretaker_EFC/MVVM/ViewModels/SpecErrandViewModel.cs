@@ -28,6 +28,9 @@ namespace Caretaker_EFC.MVVM.ViewModels
         public Errand selectedErrand = null!;
 
         [ObservableProperty]
+        public Status selectedStatus = null!;
+
+        [ObservableProperty]
         private string description = string.Empty;
 
         public SpecErrandViewModel()
@@ -43,16 +46,30 @@ namespace Caretaker_EFC.MVVM.ViewModels
         }
 
         [RelayCommand]
-        public async Task EditStatus()
+        public async Task GetStatus(Status selectedStatus)
         {
-            MessageBox.Show($"Status {SelectedErrand.OrderNumber} is updated.");
-            await UpdateSatusErrand(SelectedErrand.StatusId, SelectedErrand.StatusId);
+            await StatusService.GetStatusAsync(selectedStatus);
         }
-        public async Task UpdateSatusErrand(int id, Status status)
+
+        [RelayCommand]
+        public async Task SaveStatusAsync()
+        {
+            await UpdateStatusErrand(SelectedErrand.StatusId, SelectedStatus);
+        }
+        public async Task UpdateStatusErrand(int id, Status status)
         {
             await StatusService.UpdateStatusAsync(id, status);
         }
 
+        [RelayCommand]
+        public async Task SaveSEAsync()
+        {
+            await StatusService.SaveStatusAsync(new Status { Id = SelectedStatus.Id });
+        }
+
+
+        
+        //ej fått till detta grafiskt än.
         [RelayCommand]
         public async Task SaveCommentAsync()
         {
@@ -64,13 +81,6 @@ namespace Caretaker_EFC.MVVM.ViewModels
             });
 
             MessageBox.Show($"Comment is added.");
-        }
-
-        [RelayCommand]
-        public async Task Remove(string selectedErrand)
-        {
-            MessageBox.Show($"Are you sure that you want to remove {SelectedErrand.OrderNumber}");
-            await ErrandService.RemoveErrandAsync(selectedErrand);
         }
     }
 }
