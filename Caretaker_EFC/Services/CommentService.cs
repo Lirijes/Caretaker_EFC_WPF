@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Caretaker_EFC.Services
@@ -29,32 +30,20 @@ namespace Caretaker_EFC.Services
             await _context.SaveChangesAsync();
         }
 
-        public static async Task<IEnumerable<Comment>> GetAllCOmmentAsync()
+        public static async Task<ObservableCollection<CommentEntity>> GetAllCOmmentAsync(string ordernumber)
         {
-            var _comments = new List<Comment>();
+            var _comments = new ObservableCollection<CommentEntity>();
 
-            foreach (var _comment in await _context.Comments.ToListAsync())
-                _comments.Add(new Comment
+            foreach (var _comment in await _context.Comments.Where(x => x.ErrandOrdernumber == ordernumber).ToListAsync())
+                _comments.Add(new CommentEntity
                 {
-                    Id= _comment.Id,
+                    Id = _comment.Id,
                     Created = _comment.Created,
-                    Description = _comment.Description
+                    Description = _comment.Description,
+                    ErrandOrdernumber = _comment.ErrandOrdernumber
                 });
 
             return _comments;
-        }
-
-        public static async Task UpdateCommentAsync(string errandOrdernumber, Comment comment)
-        {
-            var commentEntity = await _context.Comments.FirstOrDefaultAsync(x => x.ErrandOrdernumber == errandOrdernumber);
-            if(commentEntity != null)
-            {
-                if(!string.IsNullOrEmpty(comment.Description))
-                    commentEntity.Description = comment.Description;
-
-                _context.Update(commentEntity);
-                await _context.SaveChangesAsync();
-            }
         }
 
         public static async Task RemoveCommentAsync(int id)

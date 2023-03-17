@@ -1,4 +1,5 @@
 ﻿using Caretaker_EFC.MVVM.Models;
+using Caretaker_EFC.MVVM.Models.Entities;
 using Caretaker_EFC.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -19,13 +20,16 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private ObservableCollection<Errand>? errands;
 
         [ObservableProperty]
-        private ObservableCollection<Comment>? comments;
+        private ObservableCollection<CommentEntity>? allComments;
 
         [ObservableProperty]
         private ObservableCollection<Status>? statuses;
 
         [ObservableProperty]
-        public Errand selectedErrand = null!;
+        public string streetname = string.Empty;
+
+        [ObservableProperty]
+        public Errand selectedErrand = new Errand();
 
         [ObservableProperty]
         public Status selectedStatus = null!;
@@ -33,15 +37,24 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         private string description = string.Empty;
 
+        [ObservableProperty]
+        private int errandStatusId;
+
         public SpecErrandViewModel()
         {
             LoadCasesAsync().ConfigureAwait(false);
+            errandStatusId = SelectedErrand.StatusId;
         }
 
         public async Task LoadCasesAsync()
         {
             Errands = new ObservableCollection<Errand>(await ErrandService.GetAllErrandsAsync());
-            Comments = new ObservableCollection<Comment>(await CommentService.GetAllCOmmentAsync());
+
+            foreach (Errand errand in Errands)
+            {
+                AllComments = new ObservableCollection<CommentEntity>(await CommentService.GetAllCOmmentAsync(errand.OrderNumber));
+                errand.Comments = AllComments;
+            }
             Statuses = new ObservableCollection<Status>(await StatusService.GetAllStatusAsync());
         }
 
@@ -52,17 +65,17 @@ namespace Caretaker_EFC.MVVM.ViewModels
         }
 
         [RelayCommand]
-        public async Task SaveStatusAsync()
+        public async Task SaveSAsync()
         {
-            MessageBox.Show("Status updated.");
-            await UpdateStatusErrand(SelectedErrand.StatusId, SelectedStatus);
-        }
-        public async Task UpdateStatusErrand(int id, Status status)
-        {
-            await StatusService.UpdateStatusAsync(id, status);
+            if(SelectedErrand != null && SelectedStatus != null)
+            {
+                MessageBox.Show("Status updated.");
+                await ErrandService.UpdateStatusErrandAsync(SelectedErrand.OrderNumber, SelectedStatus);
+                Statuses = new ObservableCollection<Status>(await StatusService.GetAllStatusAsync());
+            }
         }
 
-        
+
         //ej fått till detta grafiskt än.
         [RelayCommand]
         public async Task SaveCommentAsync()

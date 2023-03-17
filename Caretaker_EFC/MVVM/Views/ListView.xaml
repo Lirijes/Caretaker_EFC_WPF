@@ -50,7 +50,6 @@
                                     <TextBlock Text="{Binding CustomerEmail}" />
                                     <TextBlock Text="{Binding CustomerPhoneNumber}" />
                                     <TextBlock Text="{Binding Description}" />
-                                    <TextBlock Text="{Binding Comment}" />
                                     <Button Name="btn_removeErrand" Click="btn_removeErrand_Click_1" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
                                 </StackPanel>
                             </Expander>

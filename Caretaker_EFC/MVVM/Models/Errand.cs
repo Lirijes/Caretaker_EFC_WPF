@@ -1,5 +1,6 @@
 ﻿using Caretaker_EFC.MVVM.Models.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace Caretaker_EFC.MVVM.Models
 {
@@ -11,7 +12,6 @@ namespace Caretaker_EFC.MVVM.Models
         public string CustomerEmail { get; set; } = string.Empty;
         public string CustomerPhoneNumber { get; set; } = string.Empty;
         public string? Description { get; set; }
-        //public string Status { get; set; } = string.Empty;
 
         public int AddressId { get; set; }
         public AddressEntity Address { get; set; } = null!; // get Id from Address
@@ -19,10 +19,9 @@ namespace Caretaker_EFC.MVVM.Models
         //public Guid EmployeeId { get; set; }
         //public EmployeeEntity Employee { get; set; } = null!;
 
-        public int CommentsId { get; set; }
-        public CommentEntity Comment { get; set; } = null!;
-
         public int StatusId { get; set; }
         public StatusEntity Statuses { get; set; } = null!;
+
+        public ICollection<CommentEntity> Comments = new HashSet<CommentEntity>();
     }
 }

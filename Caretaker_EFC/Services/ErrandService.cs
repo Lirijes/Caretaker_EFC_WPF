@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Caretaker_EFC.Services
 {
@@ -36,12 +37,13 @@ namespace Caretaker_EFC.Services
             }
         }
 
-        public static async Task UpdateStatusErrandAsync(string ordernumber, Errand errand)
+        public static async Task UpdateStatusErrandAsync(string ordernumber, Status status)
         {
             var _errandEntity = await _context.Errands.FirstOrDefaultAsync(x => x.OrderNumber == ordernumber);
             if(_errandEntity != null)
             {
-                _errandEntity.Status = errand.Statuses;
+                if(status.Id != _errandEntity.StatusId)
+                    _errandEntity.StatusId = status.Id;
 
                 _context.Update(_errandEntity);
                 await _context.SaveChangesAsync();
@@ -51,8 +53,9 @@ namespace Caretaker_EFC.Services
         public static async Task<IEnumerable<Errand>> GetAllErrandsAsync()
         {
             var _errands = new List<Errand>();
-
-            foreach (var _errand in await _context.Errands.ToListAsync())
+            
+            foreach (var _errand in await _context.Errands.Include(e => e.Status).ToListAsync())
+            {
                 _errands.Add(new Errand
                 {
                     OrderNumber = _errand.OrderNumber,
@@ -62,9 +65,11 @@ namespace Caretaker_EFC.Services
                     CustomerPhoneNumber = _errand.CustomerPhoneNumber,
                     Description = _errand.Description,
                     Address = _errand.Address,
+                    StatusId = _errand.StatusId,
                     Statuses = _errand.Status
                 });
-
+                //Comments = await _context.Comments(x => x.ErrandOrdernumber == _errand.OrderNumber).ToListAsync();
+            }
             return _errands;
         }
 
