@@ -23,7 +23,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
         private ObservableCollection<CommentEntity>? allComments;
 
         [ObservableProperty]
-        private ObservableCollection<Status>? statuses;
+        private ObservableCollection<Status> statuses;
 
         [ObservableProperty]
         public string streetname = string.Empty;
@@ -40,10 +40,14 @@ namespace Caretaker_EFC.MVVM.ViewModels
         [ObservableProperty]
         private int errandStatusId;
 
+        //[ObservableProperty]
+        //private int errandAddressId;
+
         public SpecErrandViewModel()
         {
             LoadCasesAsync().ConfigureAwait(false);
             errandStatusId = SelectedErrand.StatusId;
+            //errandAddressId = SelectedErrand.AddressId;
         }
 
         public async Task LoadCasesAsync()
@@ -55,6 +59,7 @@ namespace Caretaker_EFC.MVVM.ViewModels
                 AllComments = new ObservableCollection<CommentEntity>(await CommentService.GetAllCOmmentAsync(errand.OrderNumber));
                 errand.Comments = AllComments;
             }
+
             Statuses = new ObservableCollection<Status>(await StatusService.GetAllStatusAsync());
         }
 

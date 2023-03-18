@@ -25,49 +25,78 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListView BorderThickness="0 0 2 0" ItemsSource="{Binding Errands}" HorizontalAlignment="Stretch" SelectionMode="Single" SelectedItem="{Binding SelectedErrand}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:Errand}">
-                        <Grid Margin="0 5 0 5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="1" HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding OrderNumber}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding Streetname}" />
-                            </StackPanel>
+                <ScrollViewer />
 
-                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Name="btn_removeErrand" Click="btn_removeErrand_Click_1" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
-                            </StackPanel>
+                <ListView Background="Transparent" BorderThickness="0 0 2 0" ItemsSource="{Binding Errands}" SelectionMode="Single" SelectedItem="{Binding SelectedErrand}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:Errand}">
+                            <Grid Margin="0 5 0 5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
 
-                            <Expander Grid.Column="0">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding OrderDate}" FontWeight="Bold" />
-                                    <TextBlock Text="{Binding CustomerName}" FontWeight="Bold" />
-                                    <TextBlock Text="{Binding CustomerEmail}" />
-                                    <TextBlock Text="{Binding CustomerPhoneNumber}" />
-                                    <TextBlock Text="{Binding Description}" />
-                                    <TextBlock Text="{Binding Statuses.Status}" />
-                                    <ListView ItemsSource="{Binding Comments}" Height="250">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate DataType="modelsentity:CommentEntity">
-                                                <StackPanel>
-                                                    <TextBlock Text="{Binding Description}" />
-                                                    <TextBlock Text="{Binding Created}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </StackPanel>
-                            </Expander>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding OrderNumber}" FontWeight="Bold" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1">
+                                        <Button Name="btn_removeErrand" Click="btn_removeErrand_Click_1" Content="REMOVE" Margin="10 6 0 6" Width="50" FontSize="10"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Expander Grid.Row="2">
+                                    <StackPanel HorizontalAlignment="Stretch">
+                                        <Grid Margin="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <ScrollViewer Grid.Column="1"/>
+
+                                            <StackPanel Grid.Column="0" Margin="0 0 20 0">
+                                                <TextBlock Text="{Binding OrderNumber}" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding AddressId}" />
+                                                <TextBlock Text="{Binding OrderDate}" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding CustomerName}" FontWeight="Bold" />
+                                                <TextBlock Text="{Binding CustomerEmail}" />
+                                                <TextBlock Text="{Binding CustomerPhoneNumber}" />
+                                                <TextBlock Text="{Binding Description}" />
+                                                <TextBlock Text="{Binding Statuses.Status}" FontWeight="Bold" />
+                                                <ListView ItemsSource="{Binding Comments}" Height="250">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate DataType="modelsentity:CommentEntity">
+                                                            <StackPanel>
+                                                                <ScrollViewer />
+                                                                <TextBlock Text="{Binding Description}" />
+                                                                <TextBlock Text="{Binding Created}" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Expander>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
             <StackPanel Grid.Column="1" Margin="10">
                 <TextBlock Text="Add Comment:" Margin="0 20 0 5" />
